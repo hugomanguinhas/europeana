@@ -1,28 +1,59 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <groupId>eu.europeana</groupId>
-  <artifactId>lod</artifactId>
-  <version>1.0</version>
-  <packaging>war</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>eu.europeana</groupId>
+    <artifactId>lod</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+    <name>Europeana LOD</name>
+    <url>http://www.europeanalabs.eu</url>
 
-  <name>lod</name>
-  <url>http://maven.apache.org</url>
+    <organization>
+        <url>http://www.europeanalabs.eu</url>
+        <name>Europeana Foundation</name>
+    </organization>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <licenses>
+        <license>
+            <name>EUPL</name>
+            <url>http://joinup.ec.europa.eu/software/page/eupl</url>
+            <comments>
+Copyright 2007-2012 The Europeana Foundation Licenced under the EUPL, 
+Version 1.1 (the "Licence") and subsequent versions as approved by the European 
+Commission; You may not use this work except in compliance with the Licence. 
+You may obtain a copy of the Licence at: http://joinup.ec.europa.eu/software/page/eupl 
+Unless required by applicable law or agreed to in writing, software distributed 
+under the Licence is distributed on an "AS IS" basis, without warranties 
+or conditions of any kind, either express or implied. See the Licence for 
+the specific language governing permissions and limitations under the Licence.
+            </comments>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-	<dependencies>
+    <developers>
+        <developer>
+            <id>hmanguinhas</id>
+            <name>Hugo Manguinhas</name>
+            <email>hugo.manguinhas@europeana.eu</email>
+        </developer>
+    </developers>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-		</dependency>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-		<!-- JENA -->
+    <dependencies>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+
+        <!-- Dependencies for JENA -->
         <dependency>
             <groupId>org.apache.jena</groupId>
             <artifactId>apache-jena-libs</artifactId>
@@ -40,12 +71,13 @@
             <version>2.12.1</version>
         </dependency>
 
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-			<version>3.1</version>
-		</dependency>
+        <!-- Dependencies for HTTP Client -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
 
-  </dependencies>
+    </dependencies>
 
 </project>

@@ -10,6 +10,10 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+/**
+ * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
+ * @since 4 Aug 2015
+ */
 public class Translator
 {
     private Transformer _transformer;

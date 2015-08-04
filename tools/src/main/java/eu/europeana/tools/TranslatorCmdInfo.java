@@ -3,6 +3,10 @@ package eu.europeana.tools;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
+ * @since 4 Aug 2015
+ */
 public class TranslatorCmdInfo
 {
     private static String HEADER = loadFile("header.txt");

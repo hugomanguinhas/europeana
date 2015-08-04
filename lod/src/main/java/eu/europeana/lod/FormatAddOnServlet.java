@@ -22,6 +22,10 @@ import org.apache.jena.riot.RiotException;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
+/**
+ * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
+ * @since 4 Aug 2015
+ */
 public class FormatAddOnServlet extends HttpServlet
 {
     private static final long   serialVersionUID = 1L;

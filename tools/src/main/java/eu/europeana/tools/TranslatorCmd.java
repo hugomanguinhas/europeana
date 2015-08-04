@@ -9,6 +9,10 @@ import javax.xml.transform.stream.StreamSource;
 
 import static eu.europeana.tools.TranslatorCmdInfo.*;
 
+/**
+ * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
+ * @since 4 Aug 2015
+ */
 public class TranslatorCmd
 {
     private static String ERR_PARAM   = "Wrong number of parameters!";
