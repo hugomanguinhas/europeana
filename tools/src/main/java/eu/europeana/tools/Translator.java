@@ -4,153 +4,158 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-public class Translator {
+public class Translator
+{
+    private Transformer _transformer;
+    private File        _file;
 
-	private Transformer _transformer;
-	private File        _file;
 
-	public Translator(Transformer t)
-	{
-		_transformer = t;
-	}
+    public Translator(Transformer t) { _transformer = t; }
 
-	public Translator(File f)
-	{
-		_file = f;
-	}
+    public Translator(File f)        { _file = f; }
 
-	public void translate(File source, File target) throws IOException
-	{
-		if ( target.getName().endsWith(".zip") ) { translate2Zip(source, target); }
-		else { translate2Dir(source, target); }
-	}
 
-	private Transformer getTransformer()
-	{
-		_transformer.clearParameters();
-		_transformer.reset();
-		return _transformer;
-	}
+    /**************************************************************************/
+    /* Public Methods
+    /**************************************************************************/
+    public void translate(File src, File dst) throws IOException
+    {
+        if ( dst.getName().endsWith(".zip") ) { translate2Zip(src, dst); }
+        else                                  { translate2Dir(src, dst); }
+    }
 
-	private void releaseTransformer(Transformer t)
-	{
-	}
 
-	private void translate2Zip(File source, File target) throws IOException
-	{
-		long time = System.currentTimeMillis();
-		System.out.println("Building file: " + target.getAbsolutePath());
-		System.out.println();
+    /**************************************************************************/
+    /* Private Methods
+    /**************************************************************************/
+    private Transformer getTransformer()
+    {
+        _transformer.clearParameters();
+        _transformer.reset();
+        return _transformer;
+    }
 
-		FileOutputStream fos = new FileOutputStream(target);
-		ZipOutputStream zos = new ZipOutputStream(fos);
+    private void releaseTransformer(Transformer t)
+    {
+    }
 
-		try {
-			File dir = source.isDirectory() ? source : source.getParentFile();
-			translateInt(dir.getAbsolutePath().length()+1, source, zos);
-		}
-		finally {
-			zos.close();
-			fos.close();
-		}
+    private void translate2Zip(File src, File dst) throws IOException
+    {
+        long time = System.currentTimeMillis();
+        System.out.println("Building file: " + dst.getAbsolutePath());
+        System.out.println();
 
-		long elapsed = System.currentTimeMillis() - time;
-		System.out.println();
-		System.out.println("Completed in " + elapsed + "ms!");
-	}
+        FileOutputStream fos = new FileOutputStream(dst);
+        ZipOutputStream zos = new ZipOutputStream(fos);
 
-	private void translate2Dir(File source, File target) throws IOException
-	{
-		long time = System.currentTimeMillis();
-		System.out.println("Building dir: " + target.getAbsolutePath());
-		System.out.println();
+        try {
+            File dir = src.isDirectory() ? src : src.getParentFile();
+            translateInt(dir.getAbsolutePath().length()+1, src, zos);
+        }
+        finally {
+            zos.close();
+            fos.close();
+        }
 
-		target.mkdirs();
+        long elapsed = System.currentTimeMillis() - time;
+        System.out.println();
+        System.out.println("Completed in " + elapsed + "ms!");
+    }
 
-		File dir = source.isDirectory() ? source : source.getParentFile();
-		translateInt(dir.getAbsolutePath().length()+1, source, target);
+    private void translate2Dir(File src, File dst) throws IOException
+    {
+        long time = System.currentTimeMillis();
+        System.out.println("Building dir: " + dst.getAbsolutePath());
+        System.out.println();
 
-		long elapsed = System.currentTimeMillis() - time;
-		System.out.println();
-		System.out.println("Completed in " + elapsed + "ms!");
-	}
+        dst.mkdirs();
 
-	private void translateInt(int iPrefix, File source, ZipOutputStream zos) throws IOException
-	{
-		if ( source.isDirectory() ) { translateDir (iPrefix, source, zos); }
-		else                        { translateFile(iPrefix, source, zos); }
-	}
+        File dir = src.isDirectory() ? src : src.getParentFile();
+        translateInt(dir.getAbsolutePath().length()+1, src, dst);
 
-	private void translateInt(int iPrefix, File source, File dest) throws IOException
-	{
-		if ( source.isDirectory() ) { translateDir (iPrefix, source, dest); }
-		else                        { translateFile(iPrefix, source, dest); }
-	}
+        long elapsed = System.currentTimeMillis() - time;
+        System.out.println();
+        System.out.println("Completed in " + elapsed + "ms!");
+    }
 
-	private void translateDir(int iPrefix, File source, ZipOutputStream zos) throws IOException
-	{
-		for(File f : source.listFiles() ) { translateInt(iPrefix, f, zos); }
-	}
+    private void translateInt(int indexP
+                            , File src, ZipOutputStream zos) throws IOException
+    {
+        if ( src.isDirectory() ) { translateDir (indexP, src, zos); }
+        else                     { translateFile(indexP, src, zos); }
+    }
 
-	private void translateDir(int iPrefix, File source, File dest) throws IOException
-	{
-		for(File f : source.listFiles() ) { translateInt(iPrefix, f, dest); }
-	}
+    private void translateInt(int indexP, File src, File dst) throws IOException
+    {
+        if ( src.isDirectory() ) { translateDir (indexP, src, dst); }
+        else                     { translateFile(indexP, src, dst); }
+    }
 
-	private void translateFile(int iPrefix, File source, ZipOutputStream zos) throws IOException
-	{
-		String name = source.getName();
-		if ( !name.endsWith(".xml") ) { return; }
+    private void translateDir(int iPrefix, File src
+                            , ZipOutputStream zos) throws IOException
+    {
+        for(File f : src.listFiles() ) { translateInt(iPrefix, f, zos); }
+    }
 
-		Transformer t = getTransformer();
+    private void translateDir(int iPrefix
+                            , File src, File dst) throws IOException
+    {
+        for(File f : src.listFiles() ) { translateInt(iPrefix, f, dst); }
+    }
 
-		ZipEntry zipEntry = new ZipEntry(source.getAbsolutePath().substring(iPrefix));
-		zos.putNextEntry(zipEntry);
-		try {
-			System.out.println("Processing file: " + source.getAbsolutePath());
-			t.transform(new StreamSource(source), new StreamResult(zos));
-			zos.flush();
-		}
-		catch (Throwable th) {
-			System.out.println("Error processing file: " + source.getName()
-					         + ", reason: " + th.getMessage());
-		}
-		finally {
-			zos.closeEntry();
-			releaseTransformer(t);
-		}
-		System.gc();
-		//NL-HaNA_fa_3.03.02.xml
-	}
+    private void translateFile(int iPrefix, File source
+                             , ZipOutputStream zos) throws IOException
+    {
+        String name = source.getName();
+        if ( !name.endsWith(".xml") ) { return; }
 
-	private void translateFile(int iPrefix, File source, File dest) throws IOException
-	{
-		String name = source.getName();
-		if ( !name.endsWith(".xml") ) { return; }
+        Transformer t = getTransformer();
 
-		File out = new File(dest, source.getAbsolutePath().substring(iPrefix));
-		out.getParentFile().mkdirs();
+        String path = source.getAbsolutePath().substring(iPrefix);
+        ZipEntry zipEntry = new ZipEntry(path);
+        zos.putNextEntry(zipEntry);
+        try {
+            System.out.println("Processing file: " + source.getAbsolutePath());
+            t.transform(new StreamSource(source), new StreamResult(zos));
+            zos.flush();
+        }
+        catch (Throwable th) {
+            System.out.println("Error processing file: " + source.getName()
+                             + ", reason: " + th.getMessage());
+        }
+        finally {
+            zos.closeEntry();
+            releaseTransformer(t);
+        }
+        System.gc();
+    }
 
-		try {
-			System.out.println("Processing file: " + source.getAbsolutePath());
-			_transformer.clearParameters();
-			_transformer.reset();
-			_transformer.transform(new StreamSource(source), new StreamResult(out));
-		}
-		catch (Throwable t) {
-			System.out.println("Error processing file: " + source.getName()
-					         + ", reason: " + t.getMessage());
-		}
-		System.gc();
-	}
+    private void translateFile(int iPrefix, File src
+                             , File dst) throws IOException
+    {
+        String name = src.getName();
+        if ( !name.endsWith(".xml") ) { return; }
+
+        File out = new File(dst, src.getAbsolutePath().substring(iPrefix));
+        out.getParentFile().mkdirs();
+
+        try {
+            System.out.println("Processing file: " + src.getAbsolutePath());
+            _transformer.clearParameters();
+            _transformer.reset();
+            _transformer.transform(new StreamSource(src)
+                                 , new StreamResult(out));
+        }
+        catch (Throwable t) {
+            System.out.println("Error processing file: " + src.getName()
+                             + ", reason: " + t.getMessage());
+        }
+        System.gc();
+    }
 }
