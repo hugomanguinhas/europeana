@@ -27,11 +27,16 @@ public class FormatAddOnServlet extends HttpServlet
     private static final long   serialVersionUID = 1L;
     private static final String DEFAULT_ENCODING = "UTF-8";
 
-    private String           _reqHost = null;
-    private String           _redHost = null;
-    private String           _redExt  = null;
-    private FormatSupport    _format  = null;
+    private String        _reqHost = null;
+    private String        _redHost = null;
+    private String        _redExt  = null;
+    private FormatSupport _format  = null;
 
+
+    /**************************************************************************/
+    /* Overridden Methods
+    /**************************************************************************/
+    @Override
     public void init(ServletConfig config) throws ServletException
     {
         super.init(config);
@@ -44,6 +49,7 @@ public class FormatAddOnServlet extends HttpServlet
         _format = (format != null ? format : FormatSupport.RDFXML);
     }
 
+    @Override
     protected void service(HttpServletRequest req, HttpServletResponse rsp)
             throws ServletException, IOException
     {
@@ -63,6 +69,10 @@ public class FormatAddOnServlet extends HttpServlet
         }
     }
 
+
+    /**************************************************************************/
+    /* Private Methods
+    /**************************************************************************/
     private FormatSupport processRequest(HttpServletRequest req
                                        , StringBuffer url)
     {
@@ -140,7 +150,11 @@ public class FormatAddOnServlet extends HttpServlet
         }
     }
 
-    private enum FormatSupport
+
+    /**************************************************************************/
+    /* Private Classes
+    /**************************************************************************/
+    private static enum FormatSupport
     {
         RDFXML   (".rdf"   , RDFFormat.RDFXML_PLAIN , "application/rdf+xml")
       , TTL      (".ttl"   , RDFFormat.TURTLE_PRETTY, "text/turtle")

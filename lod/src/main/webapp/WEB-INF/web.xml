@@ -30,5 +30,5 @@
     <url-pattern>*.rdf</url-pattern>
     <url-pattern>*.jsonld</url-pattern>
   </servlet-mapping> 
- 
+
 </web-app>

@@ -1,0 +1,13 @@
+USAGE
+
+  translator <input> <xslt> <output>
+
+DETAILS
+
+  <input>  Path to the xml input file or directory containing .xml files
+  <xslt>   Path to the xslt file
+  <output> Path to the zip file where the results will be stored
+
+EXAMPLES
+
+  translator d:\APEX d:\APEX\EDM2records.xsl d:\APEX\output.zip
