@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+
+  <!-- Support for additional RDF formats for the API -->
+
+  <servlet>
+    <servlet-name>ld2api</servlet-name>
+    <servlet-class>eu.europeana.ld.web.FormatHandlerServlet</servlet-class>
+    <init-param>
+      <param-name>request_url</param-name>
+      <param-value>http://localhost:8081/lod/</param-value>
+    </init-param>
+    <init-param>
+      <param-name>redirect_url</param-name>
+      <param-value>http://europeana.eu/api/v2/</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ld2api</servlet-name>
+    <url-pattern>*.ttl</url-pattern>
+    <url-pattern>*.n3</url-pattern>
+    <url-pattern>*.nt</url-pattern>
+  </servlet-mapping>
+
+</web-app>

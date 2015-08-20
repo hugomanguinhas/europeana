@@ -1,0 +1,73 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dbpprop="http://dbpedia.org/property/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:dbpedia-owl="http://dbpedia.org/ontology/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" > 
+  <rdf:Description rdf:about="http://wikidata.dbpedia.org/resource/Q422321">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Blueprint"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cs.dbpedia.org/resource/Diazotypie">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Blueprint"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Blueprint">
+    <owl:sameAs rdf:resource="http://pt.dbpedia.org/resource/Blueprint"/>
+    <rdfs:label xml:lang="nl">Blauwdruk</rdfs:label>
+    <owl:sameAs rdf:resource="http://cs.dbpedia.org/resource/Diazotypie"/>
+    <owl:sameAs rdf:resource="http://ca.dbpedia.org/resource/Blueprint"/>
+    <owl:sameAs rdf:resource="http://de.dbpedia.org/resource/Diazotypie"/>
+    <dbpedia-owl:wikiPageID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">99794</dbpedia-owl:wikiPageID>
+    <owl:sameAs rdf:resource="http://fi.dbpedia.org/resource/Sinikopio"/>
+    <rdfs:comment xml:lang="ja">青図（あおず）は、図面の一種。青焼きとも呼ばれる。建築土木図面の多くは、トレーシングペーパーに作図され、ジアゾ複写機（青焼機）で複製される。その複製を青図という。図面は「完成予想図」という意味を持ち、「青図を描く」とは、完成予想をするという意味でも使われる。</rdfs:comment>
+    <owl:sameAs rdf:resource="http://simple.dbpedia.org/resource/Blueprint"/>
+    <owl:sameAs rdf:resource="http://da.dbpedia.org/resource/Blåtryk"/>
+    <dbpedia-owl:abstract xml:lang="pt">O blueprint é um tipo de suporte utilizado em desenho técnico para projetos de arquitetura, engenharia ou design. No início as vistas ortogonais do modelo eram impressas em linho, mas devido ao encolhimento do material, combateu-se este problema com impressões em papel vegetal e, posteriormente, em filme de poliéster (Mylar). Um blueprint usualmente se constitui de linhas brancas em um fundo azul. Um modelo mais recente utiliza linhas azuis em um fundo branco.</dbpedia-owl:abstract>
+    <owl:sameAs rdf:resource="http://ta.dbpedia.org/resource/நீல_அச்சுப்படி"/>
+    <owl:sameAs rdf:resource="http://ru.dbpedia.org/resource/Диазотипия"/>
+    <owl:sameAs rdf:resource="http://jbo.dbpedia.org/resource/dijyselpla"/>
+    <foaf:depiction rdf:resource="http://commons.wikimedia.org/wiki/Special:FilePath/LaBelle_Blueprint.jpg"/>
+    <owl:sameAs rdf:resource="http://es.dbpedia.org/resource/Blueprint_(dibujo_técnico)"/>
+    <owl:sameAs rdf:resource="http://rdf.freebase.com/ns/m.0pg5l"/>
+    <owl:sameAs rdf:resource="http://zh.dbpedia.org/resource/藍圖"/>
+    <owl:sameAs rdf:resource="http://id.dbpedia.org/resource/Cetak_biru"/>
+    <dbpedia-owl:thumbnail rdf:resource="http://commons.wikimedia.org/wiki/Special:FilePath/LaBelle_Blueprint.jpg?width=300"/>
+    <dbpedia-owl:abstract>A blueprint is a reproduction of a technical drawing, documenting an architecture or an engineering design, using a contact print process on light-sensitive sheets. Introduced in the 19th century, the process allowed rapid and accurate reproduction of documents used in construction and industry. The blue-print process was characterized by light colored lines on a blue background, a negative of the original. The process was unable to reproduce color or shades of grey. Various base materials have been used for blueprints. Paper was a common choice; for more durable prints linen was sometimes used, but with time, the linen prints would shrink slightly. To combat this problem, printing on imitation vellum and, later, polyester film (Mylar) was implemented.The process has been largely displaced by the diazo whiteprint process and by large-format xerographic photocopiers, so reproduced drawings are usually called "prints" or just "drawings".The term blueprint is also used less formally to refer to any plan.</dbpedia-owl:abstract>
+    <dbpedia-owl:wikiPageRevisionID rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">600426311</dbpedia-owl:wikiPageRevisionID>
+    <dbpedia-owl:abstract xml:lang="fr">Le terme blueprint désigne, en anglais, un plan détaillé, ce que l'on appelle en dessin technique un dessin de définition. Le terme, signifiant littéralement « impression en bleu », provient d'un procédé d'imprimerie, la cyanotypie.Ce terme, en tant qu'anglicisme, est utilisé dans certains domaines pour désigner une représentation spatiale d'un objet, selon un ou plusieurs points de vue définis par les standards du dessin industriel (vue de face, de droite, de gauche, de dessus, de dessous, de derrière). Les blueprints sont utilisés, entre autres, par les modeleurs tridimensionnels, afin de sculpter à partir d'une référence, pour respecter l'échelle dudit objet.Portail du génie mécanique Portail du génie mécanique</dbpedia-owl:abstract>
+    <owl:sameAs rdf:resource="http://nl.dbpedia.org/resource/Blauwdruk"/>
+    <rdfs:comment xml:lang="es">Un blueprint (cuya traducción literal al español es 'impresión-azul', aunque también se le conoce como 'anteproyecto' o 'copia de plano') es una reproducción en papel de un dibujo técnico, un plano cartográfico o un diseño de ingeniería. Por lo general, el término blueprint se usa para referirse a cualquier plano detallado.</rdfs:comment>
+    <dcterms:subject rdf:resource="http://dbpedia.org/resource/Category:Infographics"/>
+    <rdfs:comment xml:lang="zh">藍圖，港澳地区又称“蓝纸”，是工程製圖的原图经过描图、晒图和薰图后生成的复制品，因为图纸是蓝色的，所以被称为“蓝图”。蓝图类似照相用的底片，可以反复复制新图，而且易于保存，不会模糊，不会掉色，不易玷污。在中文语境中，蓝图一詞通常引申为一种对未来的构想或计划。</rdfs:comment>
+    <dbpedia-owl:abstract xml:lang="ja">青図（あおず）は、図面の一種。青焼きとも呼ばれる。建築土木図面の多くは、トレーシングペーパーに作図され、ジアゾ複写機（青焼機）で複製される。その複製を青図という。図面は「完成予想図」という意味を持ち、「青図を描く」とは、完成予想をするという意味でも使われる。</dbpedia-owl:abstract>
+    <rdfs:label xml:lang="zh">藍圖</rdfs:label>
+    <rdfs:label xml:lang="ja">青図</rdfs:label>
+    <dbpedia-owl:abstract xml:lang="es">Un blueprint (cuya traducción literal al español es 'impresión-azul', aunque también se le conoce como 'anteproyecto' o 'copia de plano') es una reproducción en papel de un dibujo técnico, un plano cartográfico o un diseño de ingeniería. Por lo general, el término blueprint se usa para referirse a cualquier plano detallado.</dbpedia-owl:abstract>
+    <dcterms:subject rdf:resource="http://dbpedia.org/resource/Category:Non-impact_printing"/>
+    <rdfs:label xml:lang="es">Blueprint (dibujo técnico)</rdfs:label>
+    <prov:wasDerivedFrom rdf:resource="http://en.wikipedia.org/wiki/Blueprint?oldid=600426311"/>
+    <dbpedia-owl:abstract xml:lang="nl">Een blauwdruk is een met behulp van cyanotypie gemaakte directe fotografische kopie in witte lijnen op een blauwe achtergrond, waarbij de achtergrond blauw kleurt door het gebruik van cyanidezouten. Daarnaast is blauwdruk in de loop van de tijd ook de term geworden waarmee een nog niet uitgevoerd ontwerp van iets wordt aangeduid. Blauwdruk betekent in figuurlijke zin plan van uitvoering.</dbpedia-owl:abstract>
+    <owl:sameAs rdf:resource="http://wikidata.dbpedia.org/resource/Q422321"/>
+    <rdfs:comment xml:lang="fr">Le terme blueprint désigne, en anglais, un plan détaillé, ce que l'on appelle en dessin technique un dessin de définition.</rdfs:comment>
+    <dbpprop:hasPhotoCollection rdf:resource="http://wifo5-03.informatik.uni-mannheim.de/flickrwrappr/photos/Blueprint"/>
+    <rdfs:comment xml:lang="nl">Een blauwdruk is een met behulp van cyanotypie gemaakte directe fotografische kopie in witte lijnen op een blauwe achtergrond, waarbij de achtergrond blauw kleurt door het gebruik van cyanidezouten. Daarnaast is blauwdruk in de loop van de tijd ook de term geworden waarmee een nog niet uitgevoerd ontwerp van iets wordt aangeduid. Blauwdruk betekent in figuurlijke zin plan van uitvoering.</rdfs:comment>
+    <dbpedia-owl:abstract xml:lang="zh">藍圖，港澳地区又称“蓝纸”，是工程製圖的原图经过描图、晒图和薰图后生成的复制品，因为图纸是蓝色的，所以被称为“蓝图”。蓝图类似照相用的底片，可以反复复制新图，而且易于保存，不会模糊，不会掉色，不易玷污。在中文语境中，蓝图一詞通常引申为一种对未来的构想或计划。</dbpedia-owl:abstract>
+    <owl:sameAs rdf:resource="http://ja.dbpedia.org/resource/青図"/>
+    <owl:sameAs rdf:resource="http://wikidata.org/entity/Q422321"/>
+    <foaf:isPrimaryTopicOf rdf:resource="http://en.wikipedia.org/wiki/Blueprint"/>
+    <dcterms:subject rdf:resource="http://dbpedia.org/resource/Category:1840_introductions"/>
+    <rdfs:label xml:lang="fr">Blueprint</rdfs:label>
+    <owl:sameAs rdf:resource="http://ko.dbpedia.org/resource/청사진"/>
+    <rdfs:label xml:lang="pt">Blueprint</rdfs:label>
+    <rdfs:label>Blueprint</rdfs:label>
+    <owl:sameAs rdf:resource="http://fr.dbpedia.org/resource/Blueprint"/>
+    <rdfs:comment>A blueprint is a reproduction of a technical drawing, documenting an architecture or an engineering design, using a contact print process on light-sensitive sheets. Introduced in the 19th century, the process allowed rapid and accurate reproduction of documents used in construction and industry. The blue-print process was characterized by light colored lines on a blue background, a negative of the original. The process was unable to reproduce color or shades of grey.</rdfs:comment>
+    <rdfs:comment xml:lang="pt">O blueprint é um tipo de suporte utilizado em desenho técnico para projetos de arquitetura, engenharia ou design. No início as vistas ortogonais do modelo eram impressas em linho, mas devido ao encolhimento do material, combateu-se este problema com impressões em papel vegetal e, posteriormente, em filme de poliéster (Mylar). Um blueprint usualmente se constitui de linhas brancas em um fundo azul. Um modelo mais recente utiliza linhas azuis em um fundo branco.</rdfs:comment>
+    <dcterms:subject rdf:resource="http://dbpedia.org/resource/Category:Publications_by_format"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://de.dbpedia.org/resource/Diazotypie">
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Blueprint"/>
+  </rdf:Description>
+</rdf:RDF>
