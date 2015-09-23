@@ -1,0 +1,12 @@
+http://dbpedia.org/resource/Pornographic_film
+http://dbpedia.org/resource/Pornographic_film_actor
+http://dbpedia.org/resource/Tattoo_artist
+http://dbpedia.org/resource/Disc_jockey
+http://dbpedia.org/resource/Hip-hop_dance
+http://dbpedia.org/resource/Electronic_music
+http://dbpedia.org/resource/Deejay_(Jamaican)
+http://dbpedia.org/resource/VJ_(media_personality)
+rapper@en
+porn producer@en
+pornographer@en
+pornographic actress@en
