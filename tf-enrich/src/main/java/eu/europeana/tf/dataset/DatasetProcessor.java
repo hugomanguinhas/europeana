@@ -22,7 +22,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 
-import eu.europeana.edm.data.EDMAnalysis;
+import eu.europeana.edm.data.CHOAnalysis;
 import eu.europeana.utils.CSVWriter;
 import static eu.europeana.edm.EDMNamespace.*;
 import static eu.europeana.utils.JenaUtils.*;
@@ -60,7 +60,7 @@ public class DatasetProcessor {
 
         storeAsEDM(m, dst);
 
-        new EDMAnalysis().analyse(null, dst, null);
+        new CHOAnalysis().analyse(dst);
     }
 
     private void enrichImpl(ResIterator iter, CSVWriter printer)
@@ -131,17 +131,5 @@ public class DatasetProcessor {
         Resource rsrc = stmt.getObject().asResource();
         String   prop = getQName(stmt.getPredicate());
         printer.print(stmt.getSubject().getURI(), prop, rsrc.getURI(), "", label);
-    }
-
-
-    public static void main(String[] args) throws IOException
-    {
-        File dir = new File("D:\\work\\incoming\\nuno2\\");
-        File src = new File(dir, "TF_VALIDATION_2015-04-24");
-
-        File all = new File(dir, "dataset.tel.xml");
-        File dst = new File(dir, "dataset.xml");
-        File enr = new File(dir, "enrich.tel.csv");
-        new DatasetProcessor().process(src, all, dst, enr);
     }
 }

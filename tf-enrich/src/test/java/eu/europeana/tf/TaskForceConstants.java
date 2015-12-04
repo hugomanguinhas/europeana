@@ -4,7 +4,7 @@ import java.io.File;
 
 public interface TaskForceConstants
 {
-	public static File DIR_TASKFORCE     = new File("D:\\work\\incoming\\taskforce\\");
+	public static File DIR_TASKFORCE     = new File("D:\\work\\incoming\\taskforce\\work\\");
 	public static File DIR_RESULTS       = new File(DIR_TASKFORCE, "results");
 	public static File DIR_EVAL          = new File(DIR_TASKFORCE, "evaluation");
 	public static File DIR_EVAL_CLUSTERS = new File(DIR_EVAL     , "clusters");

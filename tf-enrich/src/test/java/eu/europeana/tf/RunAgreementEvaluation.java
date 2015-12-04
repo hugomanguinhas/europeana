@@ -20,7 +20,8 @@ public class RunAgreementEvaluation
 
         FleissKappaCalculator calculator
             = new FleissKappaCalculator(Correctness.CORRECT
-                                      , Correctness.INCORRECT, Correctness.UNSURE);
+                                      , Correctness.INCORRECT
+                                      , Correctness.UNSURE);
         calculator.calculate(ratings, FILE_AGREE_TABLE);
     }
 }

@@ -81,6 +81,14 @@ public class EnrichmentEvaluator
         return (sum / size);
     }
 
+    public double calculateMaxRecall(Collection<EnrichmentAnnotation> sample
+                                   , Collection<EnrichmentAnnotation> total)
+    {
+        int posT = calculatePositives(total);
+        return ((double)sample.size() / posT);
+    }
+
+
     public double calculateRecall(Collection<EnrichmentAnnotation> sample
                                 , Collection<EnrichmentAnnotation> total)
     {

@@ -40,25 +40,26 @@ public class EvaluationBuilder
 
         //header
         p.println("Tools", "Relaxed", "Strict", "Relaxed", "Strict"
-                , "Relaxed", "Strict", "Annotations");
+                , "Relaxed", "Strict", "Max Recall", "Annotated Enrichments");
 
-        Collection<EnrichmentAnnotation> aResults = assembler.getResults();
+        Collection<EnrichmentAnnotation> aRes = assembler.getResults();
         for ( String tool : assembler.getResultClusters() )
         {
-            Collection<EnrichmentAnnotation> cResults
+            Collection<EnrichmentAnnotation> cRes
                 = assembler.getClusteredResults(tool);
 
             p.print(tool);
-            p.print(format(_relaxedEval.calculatePrecision(cResults)));
-            p.print(format(_strictEval.calculatePrecision(cResults)));
-            p.print(format(_relaxedEval.calculateRecall(cResults, aResults)));
-            p.print(format(_strictEval.calculateRecall(cResults, aResults)));
-            p.print(format(_relaxedEval.calculateFmeasuse(cResults, aResults)));
-            p.print(format(_strictEval.calculateFmeasuse(cResults, aResults)));
-            p.print(cResults.size());
+            p.print(format(_relaxedEval.calculatePrecision(cRes)));
+            p.print(format(_strictEval.calculatePrecision(cRes)));
+            p.print(format(_relaxedEval.calculateRecall(cRes, aRes)));
+            p.print(format(_strictEval.calculateRecall(cRes, aRes)));
+            p.print(format(_relaxedEval.calculateFmeasuse(cRes, aRes)));
+            p.print(format(_strictEval.calculateFmeasuse(cRes, aRes)));
+            p.print(format(_strictEval.calculateMaxRecall(cRes, aRes)));
+            p.print(cRes.size());
             p.println();
         }
-        p.println("", "", "", "", "", "", "Corpus size", aResults.size());
+        p.println("", "", "", "", "", "", "", "Corpus size", aRes.size());
         p.end();
     }
 

@@ -29,7 +29,9 @@ public class EnrichmentSamplesAssembler
     private DecimalFormat FORMAT = new DecimalFormat("00");
 
     private Map<String,List<EnrichmentAnnotation>> _annSamples;
+    //All unique annotations per tool
     private Map<String,List<EnrichmentAnnotation>> _annClusterResults;
+    //All unique annotations
     private List<EnrichmentAnnotation>             _annResults;
 
 
@@ -53,7 +55,7 @@ public class EnrichmentSamplesAssembler
             Iterator<CSVRecord> iter = parser.iterator();
             if ( iter.hasNext() ) { iter.next(); }
 
-            while ( iter.hasNext() ) { loadAnnotation(sID, sample, iter.next()); }
+            while (iter.hasNext()) { loadAnnotation(sID, sample, iter.next()); }
         }
         catch (IOException e) {
             System.err.println("Error loading file: " + fn);
