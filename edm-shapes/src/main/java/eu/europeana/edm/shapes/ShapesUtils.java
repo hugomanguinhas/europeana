@@ -4,7 +4,11 @@
 package eu.europeana.edm.shapes;
 
 import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.apache.jena.riot.Lang;
 import org.topbraid.shacl.vocabulary.SH;
 import org.topbraid.spin.util.JenaUtil;
 
@@ -19,6 +23,10 @@ import static eu.europeana.edm.shapes.ShapesConstants.*;
  */
 public class ShapesUtils
 {
+    /***************************************************************************
+     * Public Methods
+     **************************************************************************/
+
     public static Model getSHACL()
     {
         Model m = JenaUtil.createDefaultModel();
@@ -35,5 +43,10 @@ public class ShapesUtils
         model.read(c.getResourceAsStream(EDM_EXTERNAL_SHAPES_LOCATION)
                  , "urn:dummy", FileUtils.langTurtle);
         return model;
+    }
+
+    public static void print(Model results, PrintStream ps)
+    {
+        
     }
 }

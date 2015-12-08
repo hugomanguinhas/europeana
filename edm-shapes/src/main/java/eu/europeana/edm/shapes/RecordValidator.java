@@ -3,6 +3,10 @@
  */
 package eu.europeana.edm.shapes;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
 import com.hp.hpl.jena.rdf.model.Model;
 
 /**
@@ -12,4 +16,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 public interface RecordValidator
 {
     public Model validate(Model data);
+    public Model validate(File file     , String mime) throws IOException;
+    public Model validate(InputStream in, String mime) throws IOException;
+    public Model validate(String urn)                  throws IOException;
 }
