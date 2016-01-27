@@ -363,7 +363,7 @@ esh:VR-ProvidedCHO-edmtype-values
   a sh:PropertyConstraint ;
   skos:scopeNote "R-30-DEFINE-VALUE-LISTS" ;
   sh:predicate edm:type ;
-  sh:in ( "TEXT" "VIDEO" "SOUND" "IMAGE" "3D" ) ;
+  sh:allowedValues ( "TEXT" "VIDEO" "SOUND" "IMAGE" "3D" ) ;
 .
 
   sh:property [
