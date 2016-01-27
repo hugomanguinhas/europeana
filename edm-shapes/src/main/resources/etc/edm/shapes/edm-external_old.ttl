@@ -1,0 +1,234 @@
+# baseURI: http://www.europeana.eu/schemas/edm/
+# imports: http://www.w3.org/ns/shacl
+
+@prefix :     <http://www.europeana.eu/schemas/shapes/external#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix esh:  <http://www.europeana.eu/schemas/shapes/external#> .
+@prefix edm:  <http://www.europeana.eu/schemas/edm/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+@prefix ore:  <http://www.openarchives.org/ore/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+
+
+
+##############################################################################
+#                           RDFS DEFINITIONS                                 #
+##############################################################################
+
+ore:Aggregation a rdfs:Class .
+edm:ProvidedCHO a rdfs:Class .
+edm:WebResource a rdfs:Class .
+edm:Agent       a rdfs:Class .
+skos:Concept    a rdfs:Class .
+
+
+##############################################################################
+#                           SHAPE DEFINITIONS                                #
+##############################################################################
+
+# SHAPE
+
+esh:
+  rdf:type owl:Ontology ;
+  rdf:type sh:Graph ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+  sh:shapesGraph <http://www.w3.org/ns/shacl> ;
+.
+
+# CONSTRAINT DEFINITIONS
+
+esh:RightsConstraint
+    a sh:PropertyConstraint ;
+    rdfs:label "rights"^^xsd:string ;
+    sh:predicate edm:rights ;
+    sh:in (
+        <http://creativecommons.org/publicdomain/mark/1.0/>
+        <http://www.europeana.eu/rights/out-of-copyright-non-commercial/>
+        <http://creativecommons.org/licenses/by/4.0/>
+        <http://creativecommons.org/licenses/by-sa/4.0/>
+        <http://creativecommons.org/licenses/by-nd/4.0/>
+        <http://creativecommons.org/licenses/by-nc/4.0/>
+        <http://creativecommons.org/licenses/by-nc-nd/4.0/>
+        <http://www.europeana.eu/rights/rr-f/>
+        <http://www.europeana.eu/rights/rr-p/>
+        <http://www.europeana.eu/rights/orphan-work-eu/>
+        <http://www.europeana.eu/rights/unknown/>
+      ) ;
+    sh:nodeKind sh:IRI ;
+.
+
+esh:CycleConstraint
+    a sh:ConstraintTemplate ;
+    rdfs:label "Language constraint" ;
+    rdfs:subClassOf sh:TemplateConstraint ;
+    sh:argument [
+        sh:predicate esh:property ;
+        sh:class rdf:Property ;
+        sh:name "predicate" ;
+        sh:description "The property to validate the values of." ;
+    ] ;
+    rdfs:comment "Cannot reference the same resource with this property"^^xsd:string ;
+    sh:message "Cycle reference" ;
+    sh:sparql """
+      SELECT ?this (?this as ?subject) $predicate (?this as ?object)
+      WHERE { ?this $predicate ?this . }
+    """ ;
+.
+
+# MAIN EDM CLASSES
+
+esh:Aggregation
+  a sh:Shape ;
+  rdfs:label "Aggregation"^^xsd:string ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass ore:Aggregation ;
+  sh:property [
+    sh:predicate edm:aggregatedCHO ;
+    sh:valueShape edm:ProvidedCHO ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:constraint [ #R-68
+    a sh:OrConstraint ;
+    sh:shapes (
+        [ sh:property [ sh:predicate edm:isShownAt ; sh:minCount 1 ; ] ]
+        [ sh:property [ sh:predicate edm:isShownBy ; sh:minCount 1 ; ] ]
+    )
+  ] ;
+.
+
+esh:ProvidedCHO
+  a sh:Shape ;
+  rdfs:label "ProvidedCHO"^^xsd:string ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:ProvidedCHO ;
+  sh:property [ 
+    sh:predicate edm:type ;
+    sh:minCount 1 ; #VR-ProvidedCHO-7
+    sh:maxCount 1 ;
+    sh:in ( "TEXT" "VIDEO" "SOUND" "IMAGE" "3D" ) ;
+  ] ;
+  sh:property [
+    sh:predicate dc:identifier ;
+    sh:nodeKind sh:Literal ;
+  ] ;
+  sh:property [ #VR-ProvidedCHO-8
+    sh:predicate dc:contributor ;
+    sh:valueShape esh:Agent ;
+  ] ;
+  sh:property [
+    sh:predicate edm:isNextInSequence ;
+    sh:valueShape esh:ProvidedCHO ;
+  ] ;
+  sh:property [
+    sh:predicate dct:isPartOf ;
+    sh:valueShape esh:ProvidedCHO ;
+  ] ;
+  sh:inverseProperty [
+    sh:predicate edm:aggregatedCHO ;
+    sh:valueShape esh:Aggregation ;
+    sh:minCount 1 ;
+  ] ;
+  sh:constraint [
+    a esh:CycleConstraint ;
+    esh:property edm:isNextInSequence ;
+  ] ;
+  sh:constraint [
+    a esh:CycleConstraint ;
+    esh:property dct:isPartOf ;
+  ] ;
+  sh:constraint [ #VR-ProvidedCHO-7
+    a sh:OrConstraint ;
+    sh:shapes (
+        [ sh:property [ sh:predicate dc:title ; sh:minCount 1 ; ] ]
+        [ sh:property [ sh:predicate dc:description ; sh:minCount 1 ; ] ]
+    )
+  ] ;
+  sh:constraint [ #VR-ProvidedCHO-7
+    a sh:OrConstraint ;
+    sh:shapes (
+        [ sh:property [ sh:predicate dc:subject ; sh:minCount 1 ; ] ]
+        [ sh:property [ sh:predicate dc:type ; sh:minCount 1 ; ] ]
+        [ sh:property [ sh:predicate dc:coverage ; sh:minCount 1 ; ] ]
+        [ sh:property [ sh:predicate dct:spatial ; sh:minCount 1 ; ] ]
+    )
+  ] ;
+.
+
+esh:TextProvidedCHO
+    a sh:Shape ;
+    sh:scopeClass edm:ProvidedCHO ;
+    sh:filterShape [
+        sh:property [
+            sh:predicate edm:type ;
+            sh:hasValue "TEXT" ;
+        ] ;
+    ] ;
+    sh:property [
+        sh:predicate dc:language ;
+        sh:minCount 1 ;
+        sh:pattern "^[a-z]{2,3}$"^^xsd:string ;
+    ] ;
+.
+
+esh:WebResource
+  a sh:Shape ;
+  rdfs:label "WebResource"^^xsd:string ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:WebResource ;
+  sh:property esh:RightsConstraint ;
+  sh:property [
+    sh:predicate edm:isNextInSequence ;
+    sh:valueShape esh:WebResource ;
+  ] ;
+  sh:constraint [
+    a esh:CycleConstraint ;
+    esh:property edm:isNextInSequence ;
+  ] ;
+.
+
+# CONTEXTUAL CLASSES
+
+#R-49 Property occurs once per language tag
+esh:PrefLabelConstraint 
+  a sh:PropertyConstraint ;
+  rdfs:label "Preferred label"^^xsd:string ;
+  sh:predicate skos:prefLabel ;
+  sh:uniqueLang "true"^^xsd:boolean ;
+.
+
+esh:Concept
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass skos:Concept ;
+  sh:property esh:PrefLabelConstraint ;
+.
+
+esh:Agent
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:Agent ;
+  sh:property esh:PrefLabelConstraint ;
+.
+
+  ex:CoverageShape
+    a sh:Shape ;
+    sh:filterShape [
+        sh:property [
+            sh:predicate dc:coverage ;
+            sh:nodeType sh:IRI ;
+        ]
+    ] ;
+    sh:constraint [
+      a sh:OrConstraint ;
+      sh:shapes (
+        [ sh:property [ sh:predicate dc:coverage ; sh:valueClass edm:TimeSpan ] ]
+        [ sh:property [ sh:predicate dc:coverage ; sh:valueClass edm:Place ] ]
+      )
+    ] ;
