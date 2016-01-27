@@ -97,6 +97,7 @@ esh:VR-ProvidedCHO-aggregatedCHO
   sh:predicate edm:aggregatedCHO ;
   sh:valueClass ore:Aggregation ;
   sh:minCount 1 ;
+  sh:maxCount 1 ; #this enforces uniqueness
 .
 
 #esh:VR-ProvidedCHO-uniqueness ?
