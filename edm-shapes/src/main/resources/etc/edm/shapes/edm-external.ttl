@@ -41,87 +41,338 @@ esh:
   sh:shapesGraph <http://www.w3.org/ns/shacl> ;
 .
 
-# CONSTRAINT DEFINITIONS
-
-esh:RightsConstraint
-    a sh:PropertyConstraint ;
-    rdfs:label "rights"^^xsd:string ;
-    sh:predicate edm:rights ;
-    sh:in (
-        <http://creativecommons.org/publicdomain/mark/1.0/>
-        <http://www.europeana.eu/rights/out-of-copyright-non-commercial/>
-        <http://creativecommons.org/licenses/by/4.0/>
-        <http://creativecommons.org/licenses/by-sa/4.0/>
-        <http://creativecommons.org/licenses/by-nd/4.0/>
-        <http://creativecommons.org/licenses/by-nc/4.0/>
-        <http://creativecommons.org/licenses/by-nc-nd/4.0/>
-        <http://www.europeana.eu/rights/rr-f/>
-        <http://www.europeana.eu/rights/rr-p/>
-        <http://www.europeana.eu/rights/orphan-work-eu/>
-        <http://www.europeana.eu/rights/unknown/>
-      ) ;
-    sh:nodeKind sh:IRI ;
-.
-
-esh:CycleConstraint
-    a sh:ConstraintTemplate ;
-    rdfs:label "Language constraint" ;
-    rdfs:subClassOf sh:TemplateConstraint ;
-    sh:argument [
-        sh:predicate esh:property ;
-        sh:class rdf:Property ;
-        sh:name "predicate" ;
-        sh:description "The property to validate the values of." ;
-    ] ;
-    rdfs:comment "Cannot reference the same resource with this property"^^xsd:string ;
-    sh:message "Cycle reference" ;
-    sh:sparql """
-      SELECT ?this (?this as ?subject) $predicate (?this as ?object)
-      WHERE { ?this $predicate ?this . }
-    """ ;
-.
-
-# MAIN EDM CLASSES
-
-esh:Aggregation
+esh:Agent
   a sh:Shape ;
-  rdfs:label "Aggregation"^^xsd:string ;
   rdfs:subClassOf rdfs:Resource ;
-  sh:scopeClass ore:Aggregation ;
-  sh:property [
-    sh:predicate edm:aggregatedCHO ;
-    sh:valueShape edm:ProvidedCHO ;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-  ] ;
-  sh:constraint [ #R-68
-    a sh:OrConstraint ;
-    sh:shapes (
-        [ sh:property [ sh:predicate edm:isShownAt ; sh:minCount 1 ; ] ]
-        [ sh:property [ sh:predicate edm:isShownBy ; sh:minCount 1 ; ] ]
-    )
-  ] ;
+  sh:scopeClass edm:Agent ;
 .
 
-esh:ProvidedCHO
+################################################################################
+# Validation Rules for the edm:ProvidedCHO class
+################################################################################
+
+esh:VR-ProvidedCHO
   a sh:Shape ;
-  rdfs:label "ProvidedCHO"^^xsd:string ;
   rdfs:subClassOf rdfs:Resource ;
   sh:scopeClass edm:ProvidedCHO ;
-  sh:property [ 
-    sh:predicate edm:type ;
-    sh:minCount 1 ; #VR-ProvidedCHO-7
-    sh:maxCount 1 ;
-    sh:in ( "TEXT" "VIDEO" "SOUND" "IMAGE" "3D" ) ;
+
+  sh:inverseProperty esh:VR-ProvidedCHO-aggregatedCHO ;
+  sh:constraint      esh:VR-ProvidedCHO-props ;
+
+  sh:property        esh:VR-ProvidedCHO-contributor-card ;
+  sh:property        esh:VR-ProvidedCHO-contributor-class ;
+
+  sh:property        esh:VR-ProvidedCHO-coverage-card ;
+  sh:property        esh:VR-ProvidedCHO-coverage-quality ;
+  sh:property        esh:VR-ProvidedCHO-coverage-class ;
+  sh:property        esh:VR-ProvidedCHO-coverage-subprop ;
+
+  sh:property        esh:VR-ProvidedCHO-creator-card ;
+  sh:property        esh:VR-ProvidedCHO-creator-class ;
+
+  sh:property        esh:VR-ProvidedCHO-date-card ;
+  sh:property        esh:VR-ProvidedCHO-date-class ;
+  sh:property        esh:VR-ProvidedCHO-date-literal ;
+  sh:property        esh:VR-ProvidedCHO-date-quality ;
+  sh:property        esh:VR-ProvidedCHO-date-subprop ;
+
+  sh:property        esh:VR-ProvidedCHO-description-card ;
+
+  sh:property        esh:VR-ProvidedCHO-format-card ;
+
+  sh:property        esh:VR-ProvidedCHO-identifier-type ;
+
+  sh:property        esh:VR-ProvidedCHO-language-type ;
+  sh:property        esh:VR-ProvidedCHO-language-values ;
+
+  sh:property        esh:VR-ProvidedCHO-publisher-class ;
+
+  sh:property        esh:VR-ProvidedCHO-rights-subprop ;
+
+  sh:property        esh:VR-ProvidedCHO-edmtype-type ;
+  sh:property        esh:VR-ProvidedCHO-edmtype-card ;
+  sh:property        esh:VR-ProvidedCHO-edmtype-values ;
+.
+
+
+# Constraint Declarations for edm:ProvidedCHO #
+
+esh:VR-ProvidedCHO-aggregatedCHO
+  a sh:PropertyConstraint ;
+  dc:description "Check that the URI of the ProvidedCHO and the URI described in edm:aggregatedCHO are the same.
+  skos:scopeNote "R-225-Validation-of-class-association" ;
+  sh:predicate edm:aggregatedCHO ;
+  sh:valueClass ore:Aggregation ;
+  sh:minCount 1 ;
+.
+
+#esh:VR-ProvidedCHO-uniqueness ?
+
+esh:VR-ProvidedCHO-props
+  a sh:AndConstraint ;
+  dc:description "Check that if edm:ProvidedCHO is present, at least: one dc:title or dc:description should be present; one dc:subject or dc:type or dc:coverage or dcterms:spatial and edm:type should be present" ;
+  skos:scopeNote "R-68-REQUIRED-PROPERTIES" ;
+  sh:shapes (
+    [ 
+      sh:constraint [
+        a sh:OrConstraint ;
+        sh:shapes (
+          [ sh:property [ sh:predicate dc:title       ; sh:minCount 1 ; ] ]
+          [ sh:property [ sh:predicate dc:description ; sh:minCount 1 ; ] ]
+        )
+      ]
+    ]
+    [
+      sh:constraint [
+        a sh:OrConstraint ;
+        sh:shapes (
+          [ sh:property [ sh:predicate dc:subject  ; sh:minCount 1 ; ] ]
+          [ sh:property [ sh:predicate dc:type     ; sh:minCount 1 ; ] ]
+          [ sh:property [ sh:predicate dc:coverage ; sh:minCount 1 ; ] ]
+          [ sh:property [ sh:predicate dct:spatial ; sh:minCount 1 ; ] ]
+        )
+      ]
+    ]
+    [
+      sh:property [ sh:predicate edm:type ; sh:minCount 1 ; ]
+    ]
+  )
+.
+
+esh:VR-ProvidedCHO-contributor-card
+  a sh:PropertyConstraint ;
+  sh:predicate dc:contributor ;
+  sh:minCount 0 ;
+.
+
+esh:VR-ProvidedCHO-contributor-class
+  a sh:PropertyConstraint ;
+  dc:description "the reference should be one to an Agent (the access to the data and the data itself should be formatted according to the Agent specifications.)" ;
+  skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
+  sh:predicate dc:contributor ;
+  #restrict only to nodes
+  sh:filterShape [
+      sh:property [
+          sh:predicate dc:contributor ;
+          sh:nodeType sh:IRI ;
+      ]
   ] ;
-  sh:property [
-    sh:predicate dc:identifier ;
-    sh:nodeKind sh:Literal ;
+  sh:valueShape esh:VR-Agent ;
+.
+
+esh:VR-ProvidedCHO-coverage-card
+  a sh:PropertyConstraint ;
+  sh:predicate dc:coverage ;
+  sh:minCount 0 ;
+.
+
+esh:VR-ProvidedCHO-coverage-quality
+  a sh:PropertyConstraint ;
+  dc:description "If two dc:coverage are present, suggest the use of dcterms:spatial or dcterms:temporal." ;
+  skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
+  sh:predicate dc:coverage ;
+  sh:maxCount 1 ;
+  sh:severity sh:Warning ;
+  sh:message "Suggest the use of dcterms:spatial or dcterms:temporal" ;
+.
+
+esh:VR-ProvidedCHO-coverage-class
+  a sh:PropertyConstraint ;
+  dc:description "If the value is a URI, check if it refers to a TimeSpan or a Place that is declared in the document." ;
+  sh:predicate dc:coverage ;
+  sh:filterShape [ #restrict only to nodes
+      sh:property [
+          sh:predicate dc:coverage ;
+          sh:nodeType sh:IRI ;
+      ]
   ] ;
-  sh:property [ #VR-ProvidedCHO-8
-    sh:predicate dc:contributor ;
-    sh:valueShape esh:Agent ;
+  sh:valueShape [
+    sh:constraint [
+      a sh:OrConstraint ;
+      sh:shapes ( esh:VR-Place esh:VR-TimeSpan )
+    ] ;
   ] ;
+]
+.
+
+esh:VR-ProvidedCHO-coverage-subprop
+  a sh:AndConstraint ;
+  dc:description "If dc:coverage and dcterms:spatial or dcterms:temporal are present, check that the value in dc:coverage is not redundant with dcterms:spatial or dcterms:temporal for ingestion" ;
+  skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
+  sh:severity sh:Warning ;
+  sh:shapes (
+    [ 
+      a sh:NotEqualsConstraint ;
+      sh:predicate1 dc:coverage ;
+      sh:predicate2 dcterms:spatial ;
+    ]
+    [
+      a sh:NotEqualsConstraint ;
+      sh:predicate1 dc:coverage ;
+      sh:predicate2 dcterms:temporal ;
+    ]
+  )
+.
+
+esh:VR-ProvidedCHO-creator-card #not necessary
+  a sh:PropertyConstraint ;
+  sh:predicate dc:creator ;
+  sh:minCount 0 ;
+.
+
+esh:VR-ProvidedCHO-creator-class
+  a sh:PropertyConstraint ;
+  dc:description "the reference should be one to an Agent (the access to the data and the data itself should be formatted according to the Agent specifications.)" ;
+  skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
+  sh:predicate dc:creator ;
+  sh:filterShape [ #restrict only to nodes
+      sh:property [
+          sh:predicate dc:creator ;
+          sh:nodeType sh:IRI ;
+      ]
+  ] ;
+  sh:valueShape esh:VR-Agent ;
+] ;
+
+esh:VR-ProvidedCHO-date-card #not necessary
+  a sh:PropertyConstraint ;
+  sh:predicate dc:date ;
+  sh:minCount 0 ;
+.
+
+esh:VR-ProvidedCHO-date-class
+  a sh:PropertyConstraint ;
+  dc:description "the reference should be one to a TimeSpan (the access to the data and the data itself should be formatted according to the TimeSpan specifications.)" ;
+  skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
+  sh:predicate dc:date ;
+  sh:filterShape [ #restrict only to nodes
+      sh:property [
+          sh:predicate dc:date ;
+          sh:nodeType sh:IRI ;
+      ]
+  ] ;
+  sh:valueShape esh:VR-TimeSpan ;
+.
+
+esh:VR-ProvidedCHO-date-literal
+  a sh:PropertyConstraint ;
+  dc:description "Check that the value for date matches ISO 8601 starting with the year and hyphenating the day and month parts: YYYY-MM-DD ";
+  skos:scopeNote "R-44-PATTERN-MATCHING-ON-RDF-LITERALS" ;
+  sh:predicate dc:date ;
+  sh:filterShape [ #restrict only to Literals
+      sh:property [
+          sh:predicate dc:date ;
+          sh:nodeType sh:Literal ;
+      ]
+  ] ;
+  sh:pattern "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$" ; #does not check for valid dates but could be expanded
+.
+
+esh:VR-ProvidedCHO-date-quality
+  a sh:PropertyConstraint ;
+  dc:description "If two dc:date are present, suggest the use of dcterms created or dcterms:issued." ;
+  skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
+  sh:predicate dc:coverage ;
+  sh:maxCount 1 ;
+  sh:severity sh:Warning ;
+  sh:message "Suggest the use of dcterms:created or dcterms:issued" ;
+.
+
+esh:VR-ProvidedCHO-date-subprop
+  a sh:AndConstraint ;
+  dc:description "If dc:date and dcterms:created or dcterms:issued are present, check that the value in dc:date is not redundant with dcterms:created or dctersm:issued for ingestion" ;
+  skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
+  sh:severity sh:Warning ;
+  sh:shapes (
+    [ 
+      a sh:NotEqualsConstraint ;
+      sh:predicate1 dc:date ;
+      sh:predicate2 dcterms:created ;
+    ]
+    [
+      a sh:NotEqualsConstraint ;
+      sh:predicate1 dc:date ;
+      sh:predicate2 dcterms:issued ;
+    ]
+  )
+.
+
+esh:VR-ProvidedCHO-description-card #not necessary
+  a sh:PropertyConstraint ;
+  sh:predicate dc:description ;
+  sh:minCount 0 ;
+.
+
+esh:VR-ProvidedCHO-format-card #not necessary
+  a sh:PropertyConstraint ;
+  sh:predicate dc:format ;
+  sh:minCount 0 ;
+.
+
+esh:VR-ProvidedCHO-identifier-type
+  a sh:PropertyConstraint ;
+  sh:predicate dc:identifier ;
+  sh:nodeKind sh:Literal ;
+.
+
+esh:VR-ProvidedCHO-language-type
+  a sh:PropertyConstraint ;
+  sh:predicate dc:language ;
+  sh:nodeKind sh:Literal ;
+.
+
+esh:VR-ProvidedCHO-language-values
+  a sh:PropertyConstraint ;
+  dc:description "Check that the value for language matches ISO 639 two-letter code if it exists at http://www.loc.gov/standards/iso639-2/php/code_list.php otherwise accept three-letter code." ;
+  skos:scopeNote "R-49-PROPERTY-OCCURS-ONCE-PER-LANGUAGE-TAG" ;
+  skos:scopeNote "R-47-SPECIFY-AND-VALIDATE-LANGUAGE-TAGS" ;
+  sh:predicate dc:language ;
+  sh:pattern "^[a-z]{2}$" ; #alternative is to have the full list of acceptable values
+.
+
+esh:VR-ProvidedCHO-publisher-class
+  a sh:PropertyConstraint ;
+  dc:description "-the reference should be one to an Agent( the access to the data and the data itself should be formatted according to the Agent specifications.)" ;
+  skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
+  sh:predicate dc:publisher ;
+  sh:filterShape [ #restrict only to nodes
+      sh:property [
+          sh:predicate dc:publisher ;
+          sh:nodeType sh:IRI ;
+      ]
+  ] ;
+  sh:valueShape esh:VR-Agent ;
+] ;
+
+esh:VR-ProvidedCHO-rights-subprop
+  a sh:NotEqualsConstraint ;
+  dc:description "Check if dc:rights has the same value than edm:rights either as rdf:resource or literal,  if yes the field is redundant" ;
+  skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
+  sh:severity sh:Warning ;
+  sh:predicate1 dc:rights ;
+  sh:predicate2 edm:rights ;
+.
+
+esh:VR-ProvidedCHO-edmtype-type
+  a sh:PropertyConstraint ;
+  sh:predicate edm:type ;
+  sh:nodeKind sh:Literal ;
+.
+
+esh:VR-ProvidedCHO-edmtype-card
+  a sh:PropertyConstraint ;
+  sh:predicate edm:type ;
+  sh:minCount 1 ;
+  sh:maxCount 1 ;
+.
+
+esh:VR-ProvidedCHO-edmtype-values
+  a sh:PropertyConstraint ;
+  skos:scopeNote "R-30-DEFINE-VALUE-LISTS" ;
+  sh:predicate edm:type ;
+  sh:in ( "TEXT" "VIDEO" "SOUND" "IMAGE" "3D" ) ;
+.
+
   sh:property [
     sh:predicate edm:isNextInSequence ;
     sh:valueShape esh:ProvidedCHO ;
@@ -130,91 +381,4 @@ esh:ProvidedCHO
     sh:predicate dct:isPartOf ;
     sh:valueShape esh:ProvidedCHO ;
   ] ;
-  sh:inverseProperty [
-    sh:predicate edm:aggregatedCHO ;
-    sh:valueShape esh:Aggregation ;
-    sh:minCount 1 ;
-  ] ;
-  sh:constraint [
-    a esh:CycleConstraint ;
-    esh:property edm:isNextInSequence ;
-  ] ;
-  sh:constraint [
-    a esh:CycleConstraint ;
-    esh:property dct:isPartOf ;
-  ] ;
-  sh:constraint [ #VR-ProvidedCHO-7
-    a sh:OrConstraint ;
-    sh:shapes (
-        [ sh:property [ sh:predicate dc:title ; sh:minCount 1 ; ] ]
-        [ sh:property [ sh:predicate dc:description ; sh:minCount 1 ; ] ]
-    )
-  ] ;
-  sh:constraint [ #VR-ProvidedCHO-7
-    a sh:OrConstraint ;
-    sh:shapes (
-        [ sh:property [ sh:predicate dc:subject ; sh:minCount 1 ; ] ]
-        [ sh:property [ sh:predicate dc:type ; sh:minCount 1 ; ] ]
-        [ sh:property [ sh:predicate dc:coverage ; sh:minCount 1 ; ] ]
-        [ sh:property [ sh:predicate dct:spatial ; sh:minCount 1 ; ] ]
-    )
-  ] ;
 .
-
-esh:TextProvidedCHO
-    a sh:Shape ;
-    sh:scopeClass edm:ProvidedCHO ;
-    sh:filterShape [
-        sh:property [
-            sh:predicate edm:type ;
-            sh:hasValue "TEXT" ;
-        ] ;
-    ] ;
-    sh:property [
-        sh:predicate dc:language ;
-        sh:minCount 1 ;
-        sh:pattern "^[a-z]{2,3}$"^^xsd:string ;
-    ] ;
-.
-
-esh:WebResource
-  a sh:Shape ;
-  rdfs:label "WebResource"^^xsd:string ;
-  rdfs:subClassOf rdfs:Resource ;
-  sh:scopeClass edm:WebResource ;
-  sh:property esh:RightsConstraint ;
-  sh:property [
-    sh:predicate edm:isNextInSequence ;
-    sh:valueShape esh:WebResource ;
-  ] ;
-  sh:constraint [
-    a esh:CycleConstraint ;
-    esh:property edm:isNextInSequence ;
-  ] ;
-.
-
-# CONTEXTUAL CLASSES
-
-#R-49 Property occurs once per language tag
-esh:PrefLabelConstraint 
-  a sh:PropertyConstraint ;
-  rdfs:label "Preferred label"^^xsd:string ;
-  sh:predicate skos:prefLabel ;
-  sh:uniqueLang "true"^^xsd:boolean ;
-.
-
-esh:Concept
-  a sh:Shape ;
-  rdfs:subClassOf rdfs:Resource ;
-  sh:scopeClass skos:Concept ;
-  sh:property esh:PrefLabelConstraint ;
-.
-
-esh:Agent
-  a sh:Shape ;
-  rdfs:subClassOf rdfs:Resource ;
-  sh:scopeClass edm:Agent ;
-  sh:property esh:PrefLabelConstraint ;
-.
-
-

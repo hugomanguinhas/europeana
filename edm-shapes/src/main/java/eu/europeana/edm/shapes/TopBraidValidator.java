@@ -3,7 +3,6 @@
  */
 package eu.europeana.edm.shapes;
 
-import java.io.PrintStream;
 import java.net.URI;
 import java.util.UUID;
 
@@ -19,6 +18,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 import eu.europeana.edm.shapes.ShapesConstants.ShapesType;
 import static eu.europeana.edm.shapes.ShapesUtils.*;
+import static eu.europeana.edm.shapes.SHACLNamespace.*;
 
 /**
  * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
@@ -66,6 +66,7 @@ public class TopBraidValidator extends AbsRecordValidator
 
         long elapsed = System.currentTimeMillis() - time;
         System.out.println("Validator executed in " + elapsed + "ms");
+        results.setNsPrefix(SHACL_PREFIX, SHACL_NS);
 
         return results;
     }

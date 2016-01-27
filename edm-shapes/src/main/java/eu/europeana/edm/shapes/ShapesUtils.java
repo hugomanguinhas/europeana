@@ -13,9 +13,13 @@ import org.topbraid.shacl.vocabulary.SH;
 import org.topbraid.spin.util.JenaUtil;
 
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ResIterator;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.util.FileUtils;
 
 import static eu.europeana.edm.shapes.ShapesConstants.*;
+import static eu.europeana.edm.EDMNamespace.*;
+import static eu.europeana.edm.shapes.SHACLNamespace.*;
 
 /**
  * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
@@ -47,6 +51,15 @@ public class ShapesUtils
 
     public static void print(Model results, PrintStream ps)
     {
-        
+        ps.println(results);
+        ResIterator iter = results.listResourcesWithProperty(
+                results.getProperty(RDF_TYPE)
+              , results.getResource(SHACL_RESULT));
+        while(iter.hasNext()) { print(iter.nextResource(), ps); }
+    }
+
+    private static void print(Resource r, PrintStream ps)
+    {
+        System.out.println(r);
     }
 }
