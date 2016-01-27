@@ -16,7 +16,6 @@
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 
 
-
 ##############################################################################
 #                           RDFS DEFINITIONS                                 #
 ##############################################################################
@@ -39,12 +38,6 @@ esh:
   rdf:type sh:Graph ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
   sh:shapesGraph <http://www.w3.org/ns/shacl> ;
-.
-
-esh:Agent
-  a sh:Shape ;
-  rdfs:subClassOf rdfs:Resource ;
-  sh:scopeClass edm:Agent ;
 .
 
 ################################################################################
@@ -99,7 +92,7 @@ esh:VR-ProvidedCHO
 
 esh:VR-ProvidedCHO-aggregatedCHO
   a sh:PropertyConstraint ;
-  dc:description "Check that the URI of the ProvidedCHO and the URI described in edm:aggregatedCHO are the same.
+  dc:description "Check that the URI of the ProvidedCHO and the URI described in edm:aggregatedCHO are the same." ;
   skos:scopeNote "R-225-Validation-of-class-association" ;
   sh:predicate edm:aggregatedCHO ;
   sh:valueClass ore:Aggregation ;
@@ -139,7 +132,7 @@ esh:VR-ProvidedCHO-props
   )
 .
 
-esh:VR-ProvidedCHO-contributor-card
+esh:VR-ProvidedCHO-contributor-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:contributor ;
   sh:minCount 0 ;
@@ -160,7 +153,7 @@ esh:VR-ProvidedCHO-contributor-class
   sh:valueShape esh:VR-Agent ;
 .
 
-esh:VR-ProvidedCHO-coverage-card
+esh:VR-ProvidedCHO-coverage-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:coverage ;
   sh:minCount 0 ;
@@ -214,7 +207,7 @@ esh:VR-ProvidedCHO-coverage-subprop
   )
 .
 
-esh:VR-ProvidedCHO-creator-card #not necessary
+esh:VR-ProvidedCHO-creator-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:creator ;
   sh:minCount 0 ;
@@ -234,7 +227,7 @@ esh:VR-ProvidedCHO-creator-class
   sh:valueShape esh:VR-Agent ;
 ] ;
 
-esh:VR-ProvidedCHO-date-card #not necessary
+esh:VR-ProvidedCHO-date-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:date ;
   sh:minCount 0 ;
@@ -297,13 +290,13 @@ esh:VR-ProvidedCHO-date-subprop
   )
 .
 
-esh:VR-ProvidedCHO-description-card #not necessary
+esh:VR-ProvidedCHO-description-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:description ;
   sh:minCount 0 ;
 .
 
-esh:VR-ProvidedCHO-format-card #not necessary
+esh:VR-ProvidedCHO-format-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:format ;
   sh:minCount 0 ;
