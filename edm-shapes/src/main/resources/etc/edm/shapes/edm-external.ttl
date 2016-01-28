@@ -367,12 +367,3 @@ esh:VR-ProvidedCHO-edmtype-values
   sh:allowedValues ( "TEXT" "VIDEO" "SOUND" "IMAGE" "3D" ) ;
 .
 
-  sh:property [
-    sh:predicate edm:isNextInSequence ;
-    sh:valueShape esh:ProvidedCHO ;
-  ] ;
-  sh:property [
-    sh:predicate dct:isPartOf ;
-    sh:valueShape esh:ProvidedCHO ;
-  ] ;
-.
