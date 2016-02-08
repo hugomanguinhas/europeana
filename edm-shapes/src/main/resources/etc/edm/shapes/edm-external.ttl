@@ -257,12 +257,12 @@ esh:VR-ProvidedCHO-date-literal
   dc:description "Check that the value for date matches ISO 8601 starting with the year and hyphenating the day and month parts: YYYY-MM-DD ";
   skos:scopeNote "R-44-PATTERN-MATCHING-ON-RDF-LITERALS" ;
   sh:predicate dc:date ;
-#  sh:filterShape [ #restrict only to Literals
-#      sh:property [
-#          sh:predicate dc:date ;
-#          sh:nodeKind sh:Literal ;
-#      ]
-#  ] ;
+  sh:filterShape [ #restrict only to Literals
+      sh:property [
+          sh:predicate dc:date ;
+          sh:nodeKind sh:Literal ;
+      ]
+  ] ;
   sh:pattern "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$" ; #does not check for valid dates but could be expanded
 .
 
