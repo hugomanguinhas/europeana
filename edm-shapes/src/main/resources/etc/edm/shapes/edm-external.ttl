@@ -149,12 +149,12 @@ esh:VR-ProvidedCHO-contributor-class
   skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
   sh:predicate dc:contributor ;
   #restrict only to nodes
-#  sh:filterShape [
-#      sh:property [
-#          sh:predicate dc:contributor ;
-#          sh:nodeKind sh:IRI ;
-#      ]
-#  ] ;
+  sh:filterShape [
+      sh:property [
+          sh:predicate dc:contributor ;
+          sh:nodeKind sh:IRI ;
+      ]
+  ] ;
   sh:valueShape esh:VR-Agent ;
 .
 
