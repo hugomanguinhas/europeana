@@ -6,15 +6,21 @@ package eu.europeana.edm.shapes;
 import java.net.URI;
 import java.util.UUID;
 
+import org.apache.jena.graph.Graph;
+import org.apache.jena.graph.compose.MultiUnion;
+import org.apache.jena.query.Dataset;
 import org.topbraid.shacl.arq.SHACLFunctions;
 import org.topbraid.shacl.constraints.ModelConstraintValidator;
 import org.topbraid.spin.arq.ARQFactory;
-
-import com.hp.hpl.jena.graph.Graph;
-import com.hp.hpl.jena.graph.compose.MultiUnion;
-import com.hp.hpl.jena.query.Dataset;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.Statement;
+import org.apache.jena.util.FileUtils;
+import org.apache.jena.vocabulary.RDF;
+import org.apache.jena.vocabulary.RDFS;
 
 import eu.europeana.edm.shapes.ShapesConstants.ShapesType;
 import static eu.europeana.edm.shapes.ShapesUtils.*;
@@ -38,8 +44,7 @@ public class TopBraidValidator extends AbsRecordValidator
 
     public TopBraidValidator(ShapesType type)
     {
-        _validator       = ModelConstraintValidator.get();
-        _validationModel = getValidationModel(type);
+        this(getValidationModel(type));
     }
 
 
@@ -76,7 +81,7 @@ public class TopBraidValidator extends AbsRecordValidator
      * Private Methods
      **************************************************************************/
 
-    private Model getValidationModelForEDMExternal()
+    private static Model getValidationModelForEDMExternal()
     {
         MultiUnion unionGraph = new MultiUnion(new Graph[] {
             getSHACL().getGraph(),
@@ -92,7 +97,7 @@ public class TopBraidValidator extends AbsRecordValidator
         return m;
     }
 
-    private Model getValidationModel(ShapesType type)
+    private static Model getValidationModel(ShapesType type)
     {
         switch ( type )
         {

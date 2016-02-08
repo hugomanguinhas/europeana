@@ -11,9 +11,8 @@ import java.io.InputStream;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.jena.rdf.model.Model;
 import org.topbraid.spin.util.JenaUtil;
-
-import com.hp.hpl.jena.rdf.model.Model;
 
 import static eu.europeana.net.HttpUtils.*;
 import static eu.europeana.rdf.FormatSupport.*;

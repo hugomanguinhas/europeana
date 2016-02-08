@@ -1,4 +1,3 @@
-# baseURI: http://www.europeana.eu/schemas/edm/
 # imports: http://www.w3.org/ns/shacl
 
 @prefix :     <http://www.europeana.eu/schemas/shapes/external#> .
@@ -58,7 +57,7 @@ esh:VR-ProvidedCHO
   sh:property        esh:VR-ProvidedCHO-coverage-card ;
   sh:property        esh:VR-ProvidedCHO-coverage-quality ;
   sh:property        esh:VR-ProvidedCHO-coverage-class ;
-  sh:property        esh:VR-ProvidedCHO-coverage-subprop ;
+  sh:constraint      esh:VR-ProvidedCHO-coverage-subprop ;
 
   sh:property        esh:VR-ProvidedCHO-creator-card ;
   sh:property        esh:VR-ProvidedCHO-creator-class ;
@@ -82,6 +81,14 @@ esh:VR-ProvidedCHO
 
   sh:property        esh:VR-ProvidedCHO-rights-subprop ;
 
+  sh:property        esh:VR-ProvidedCHO-subject-class ;
+  sh:property        esh:VR-ProvidedCHO-subject-multiplevalue ;
+
+  sh:property        esh:VR-ProvidedCHO-title-type ;
+
+  sh:property        esh:VR-ProvidedCHO-dctype-card ;
+  sh:property        esh:VR-ProvidedCHO-dctype-class ;
+
   sh:property        esh:VR-ProvidedCHO-edmtype-type ;
   sh:property        esh:VR-ProvidedCHO-edmtype-card ;
   sh:property        esh:VR-ProvidedCHO-edmtype-values ;
@@ -95,22 +102,23 @@ esh:VR-ProvidedCHO-aggregatedCHO
   dc:description "Check that the URI of the ProvidedCHO and the URI described in edm:aggregatedCHO are the same." ;
   skos:scopeNote "R-225-Validation-of-class-association" ;
   sh:predicate edm:aggregatedCHO ;
-  sh:valueClass ore:Aggregation ;
+  sh:class ore:Aggregation ;
   sh:minCount 1 ;
   sh:maxCount 1 ; #this enforces uniqueness
 .
 
 #esh:VR-ProvidedCHO-uniqueness ?
 
+# the constraint for edm:type was taken out of this rule
 esh:VR-ProvidedCHO-props
-  a sh:AndConstraint ;
+  a sh:Constraint ;
   dc:description "Check that if edm:ProvidedCHO is present, at least: one dc:title or dc:description should be present; one dc:subject or dc:type or dc:coverage or dcterms:spatial and edm:type should be present" ;
   skos:scopeNote "R-68-REQUIRED-PROPERTIES" ;
-  sh:shapes (
-    [ 
+  sh:message "At least: one dc:title or dc:description; one dc:subject or dc:type or dc:coverage or dcterms:spatial; and one edm:type should be present" ;
+  sh:and (
+    [
       sh:constraint [
-        a sh:OrConstraint ;
-        sh:shapes (
+        sh:or (
           [ sh:property [ sh:predicate dc:title       ; sh:minCount 1 ; ] ]
           [ sh:property [ sh:predicate dc:description ; sh:minCount 1 ; ] ]
         )
@@ -118,8 +126,7 @@ esh:VR-ProvidedCHO-props
     ]
     [
       sh:constraint [
-        a sh:OrConstraint ;
-        sh:shapes (
+        sh:or (
           [ sh:property [ sh:predicate dc:subject  ; sh:minCount 1 ; ] ]
           [ sh:property [ sh:predicate dc:type     ; sh:minCount 1 ; ] ]
           [ sh:property [ sh:predicate dc:coverage ; sh:minCount 1 ; ] ]
@@ -127,10 +134,7 @@ esh:VR-ProvidedCHO-props
         )
       ]
     ]
-    [
-      sh:property [ sh:predicate edm:type ; sh:minCount 1 ; ]
-    ]
-  )
+  ) ;
 .
 
 esh:VR-ProvidedCHO-contributor-card  # not really necessary
@@ -145,12 +149,12 @@ esh:VR-ProvidedCHO-contributor-class
   skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
   sh:predicate dc:contributor ;
   #restrict only to nodes
-  sh:filterShape [
-      sh:property [
-          sh:predicate dc:contributor ;
-          sh:nodeType sh:IRI ;
-      ]
-  ] ;
+#  sh:filterShape [
+#      sh:property [
+#          sh:predicate dc:contributor ;
+#          sh:nodeKind sh:IRI ;
+#      ]
+#  ] ;
   sh:valueShape esh:VR-Agent ;
 .
 
@@ -177,33 +181,33 @@ esh:VR-ProvidedCHO-coverage-class
   sh:filterShape [ #restrict only to nodes
       sh:property [
           sh:predicate dc:coverage ;
-          sh:nodeType sh:IRI ;
+          sh:nodeKind sh:IRI ;
       ]
   ] ;
   sh:valueShape [
     sh:constraint [
-      a sh:OrConstraint ;
-      sh:shapes ( esh:VR-Place esh:VR-TimeSpan )
+      sh:or ( esh:VR-Place esh:VR-TimeSpan )
     ] ;
   ] ;
-]
 .
 
 esh:VR-ProvidedCHO-coverage-subprop
-  a sh:AndConstraint ;
+  a sh:Constraint ;
   dc:description "If dc:coverage and dcterms:spatial or dcterms:temporal are present, check that the value in dc:coverage is not redundant with dcterms:spatial or dcterms:temporal for ingestion" ;
   skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
   sh:severity sh:Warning ;
-  sh:shapes (
-    [ 
-      a sh:NotEqualsConstraint ;
-      sh:predicate1 dc:coverage ;
-      sh:predicate2 dcterms:spatial ;
+  sh:and (
+    [
+      sh:property [
+        sh:predicate dc:coverage ;
+        sh:notEquals dct:spatial ;
+      ]
     ]
     [
-      a sh:NotEqualsConstraint ;
-      sh:predicate1 dc:coverage ;
-      sh:predicate2 dcterms:temporal ;
+      sh:property [
+        sh:predicate dc:coverage ;
+        sh:notEquals dct:temporal ;
+      ]
     ]
   )
 .
@@ -222,11 +226,11 @@ esh:VR-ProvidedCHO-creator-class
   sh:filterShape [ #restrict only to nodes
       sh:property [
           sh:predicate dc:creator ;
-          sh:nodeType sh:IRI ;
+          sh:nodeKind sh:IRI ;
       ]
   ] ;
   sh:valueShape esh:VR-Agent ;
-] ;
+.
 
 esh:VR-ProvidedCHO-date-card  # not really necessary
   a sh:PropertyConstraint ;
@@ -242,7 +246,7 @@ esh:VR-ProvidedCHO-date-class
   sh:filterShape [ #restrict only to nodes
       sh:property [
           sh:predicate dc:date ;
-          sh:nodeType sh:IRI ;
+          sh:nodeKind sh:IRI ;
       ]
   ] ;
   sh:valueShape esh:VR-TimeSpan ;
@@ -253,12 +257,12 @@ esh:VR-ProvidedCHO-date-literal
   dc:description "Check that the value for date matches ISO 8601 starting with the year and hyphenating the day and month parts: YYYY-MM-DD ";
   skos:scopeNote "R-44-PATTERN-MATCHING-ON-RDF-LITERALS" ;
   sh:predicate dc:date ;
-  sh:filterShape [ #restrict only to Literals
-      sh:property [
-          sh:predicate dc:date ;
-          sh:nodeType sh:Literal ;
-      ]
-  ] ;
+#  sh:filterShape [ #restrict only to Literals
+#      sh:property [
+#          sh:predicate dc:date ;
+#          sh:nodeKind sh:Literal ;
+#      ]
+#  ] ;
   sh:pattern "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$" ; #does not check for valid dates but could be expanded
 .
 
@@ -266,29 +270,30 @@ esh:VR-ProvidedCHO-date-quality
   a sh:PropertyConstraint ;
   dc:description "If two dc:date are present, suggest the use of dcterms created or dcterms:issued." ;
   skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
-  sh:predicate dc:coverage ;
+  sh:predicate dc:date ;
   sh:maxCount 1 ;
   sh:severity sh:Warning ;
   sh:message "Suggest the use of dcterms:created or dcterms:issued" ;
 .
 
 esh:VR-ProvidedCHO-date-subprop
-  a sh:AndConstraint ;
   dc:description "If dc:date and dcterms:created or dcterms:issued are present, check that the value in dc:date is not redundant with dcterms:created or dctersm:issued for ingestion" ;
   skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
   sh:severity sh:Warning ;
-  sh:shapes (
-    [ 
-      a sh:NotEqualsConstraint ;
-      sh:predicate1 dc:date ;
-      sh:predicate2 dcterms:created ;
-    ]
-    [
-      a sh:NotEqualsConstraint ;
-      sh:predicate1 dc:date ;
-      sh:predicate2 dcterms:issued ;
-    ]
-  )
+  sh:predicate  dc:date ;
+  sh:notEquals dct:created ;
+#  sh:notEquals dct:issued ;
+
+#  sh:and (
+#    [ 
+#      sh:predicate  dc:date ;
+#      sh:notEquals dct:created ;
+#    ]
+#    [
+#      sh:predicate dc:date ;
+#      sh:notEquals dct:issued ;
+#    ]
+#  )
 .
 
 esh:VR-ProvidedCHO-description-card  # not really necessary
@@ -332,20 +337,74 @@ esh:VR-ProvidedCHO-publisher-class
   sh:filterShape [ #restrict only to nodes
       sh:property [
           sh:predicate dc:publisher ;
-          sh:nodeType sh:IRI ;
+          sh:nodeKind sh:IRI ;
       ]
   ] ;
   sh:valueShape esh:VR-Agent ;
-] ;
+.
 
 esh:VR-ProvidedCHO-rights-subprop
-  a sh:NotEqualsConstraint ;
+  a sh:PropertyConstraint ;
   dc:description "Check if dc:rights has the same value than edm:rights either as rdf:resource or literal,  if yes the field is redundant" ;
   skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
   sh:severity sh:Warning ;
-  sh:predicate1 dc:rights ;
-  sh:predicate2 edm:rights ;
+  sh:predicate dc:rights ;
+  sh:notEquals edm:rights ;
 .
+
+esh:VR-ProvidedCHO-subject-class
+  a sh:PropertyConstraint ;
+  dc:description "The reference should be one to a Concept( the access to the data and the data itself should be formatted according to the Concept specifications.)" ;
+  skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
+  sh:predicate dc:publisher ;
+  sh:filterShape [ #restrict only to nodes
+      sh:property [
+          sh:predicate dc:subject ;
+          sh:nodeKind sh:IRI ;
+      ]
+  ] ;
+  sh:valueShape esh:VR-Concept ;
+.
+
+esh:VR-ProvidedCHO-subject-multiplevalue
+  a sh:PropertyConstraint ;
+  dc:description "If more than one term is in the field, a new dc:subject should be created." ;
+#  skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
+  skos:note "The field is considered to have multiple terms if a separator is detected" ;
+  sh:severity sh:Warning ;
+  sh:predicate dc:subject ;
+  sh:pattern "^[^,;]*$" ; #check for char separators
+  sh:message "More than one term was detected, suggest the use of a new dc:subject field" ;
+.
+
+esh:VR-ProvidedCHO-title-type
+  a sh:PropertyConstraint ;
+  sh:predicate dc:title ;
+  sh:nodeKind sh:Literal ;
+.
+
+esh:VR-ProvidedCHO-dctype-card  # not really necessary
+  a sh:PropertyConstraint ;
+  sh:predicate dc:type ;
+  sh:minCount 0 ;
+.
+
+esh:VR-ProvidedCHO-dctype-class
+  a sh:PropertyConstraint ;
+  dc:description "if the value is a URI, check if a skos:Concept class is created." ;
+  dc:description "The reference should be one to a Concept( the access to the data and the data itself should be formatted according to the Concept specifications.)" ;
+  skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
+  sh:predicate dc:type ;
+  sh:filterShape [ #restrict only to nodes
+      sh:property [
+          sh:predicate dc:subject ;
+          sh:nodeKind sh:IRI ;
+      ]
+  ] ;
+  sh:valueShape esh:VR-Concept ;
+.
+
+
 
 esh:VR-ProvidedCHO-edmtype-type
   a sh:PropertyConstraint ;
@@ -364,6 +423,38 @@ esh:VR-ProvidedCHO-edmtype-values
   a sh:PropertyConstraint ;
   skos:scopeNote "R-30-DEFINE-VALUE-LISTS" ;
   sh:predicate edm:type ;
-  sh:allowedValues ( "TEXT" "VIDEO" "SOUND" "IMAGE" "3D" ) ;
+  sh:in ( "TEXT" "VIDEO" "SOUND" "IMAGE" "3D" ) ;
 .
+
+################################################################################
+# Validation Rules for other classes
+################################################################################
+
+esh:VR-Agent
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:Agent ;
+.
+
+esh:VR-Place
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:Place ;
+.
+
+esh:VR-TimeSpan
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:TimeSpan ;
+.
+
+esh:VR-Concept
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass skos:Concept ;
+.
+
+
+
+
 
