@@ -98,7 +98,7 @@ esh:VR-ProvidedCHO
 # Constraint Declarations for edm:ProvidedCHO #
 
 esh:VR-ProvidedCHO-aggregatedCHO
-  a sh:PropertyConstraint ;
+  a sh:InversePropertyConstraint ;
   dc:description "Check that the URI of the ProvidedCHO and the URI described in edm:aggregatedCHO are the same." ;
   skos:scopeNote "R-225-Validation-of-class-association" ;
   sh:predicate edm:aggregatedCHO ;
@@ -155,7 +155,8 @@ esh:VR-ProvidedCHO-contributor-class
           sh:nodeKind sh:IRI ;
       ]
   ] ;
-  sh:valueShape esh:VR-Agent ;
+#  sh:valueShape esh:VR-Agent ;
+  sh:class edm:Agent ;
 .
 
 esh:VR-ProvidedCHO-coverage-card  # not really necessary

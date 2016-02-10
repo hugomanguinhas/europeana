@@ -9,7 +9,7 @@
          >
 
     <ore:Aggregation rdf:about="http://data.europeana.eu/aggregation/provider/09102/_UEDIN_214">
-        <edm:aggregatedCHO rdf:resource="http://data.europeana.eu/item/09102/_UEDIN_214"/>
+        <edm:aggregatedCHO rdf:resource="http://data.europeana.eu/item/somethingelse"/>
         <edm:dataProvider>University of Edinburgh</edm:dataProvider>
         <edm:hasView rdf:resource="http://www.mimo-db.eu/media/UEDIN/VIDEO/0032195v.mpg"/>
         <edm:hasView rdf:resource="http://www.mimo-db.eu/media/UEDIN/AUDIO/0032195s.mp3"/>
@@ -36,7 +36,7 @@
         <dc:contributor rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4378"/>
     </edm:ProvidedCHO>
 
-    <edm:Agent rdf:about="http://www.mimo-db.eu/media/UEDIN">
+    <edm:Agent rdf:about="http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart">
     </edm:Agent>
 
     <edm:WebResource rdf:about="http://www.mimo-db.eu/media/UEDIN/VIDEO/0032195v.mpg">
