@@ -1,0 +1,41 @@
+@prefix :     <http://www.europeana.eu/schemas/shapes/external#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix esh:  <http://www.europeana.eu/schemas/shapes/external#> .
+@prefix edm:  <http://www.europeana.eu/schemas/edm/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+@prefix ore:  <http://www.openarchives.org/ore/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+
+
+##############################################################################
+#                           RDFS DEFINITIONS                                 #
+##############################################################################
+
+ore:Aggregation a rdfs:Class .
+edm:ProvidedCHO a rdfs:Class .
+edm:WebResource a rdfs:Class .
+edm:Agent       a rdfs:Class .
+skos:Concept    a rdfs:Class .
+
+
+##############################################################################
+#                           SHAPE DEFINITIONS                                #
+##############################################################################
+
+# SHAPE
+
+esh:
+  rdf:type owl:Ontology ;
+  rdf:type sh:Graph ;
+  owl:versionInfo "Draft version for EDM shapes profile for edm externa"^^xsd:string ;
+#  owl:import <./edm-contextual-classes.ttl> ;
+#  owl:import <./edm-provided-cho.ttl> ;
+  sh:shapesGraph <http://www.w3.org/ns/shacl> ;
+.
+

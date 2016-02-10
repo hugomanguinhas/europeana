@@ -1,0 +1,56 @@
+@prefix :     <http://www.europeana.eu/schemas/shapes/external#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix esh:  <http://www.europeana.eu/schemas/shapes/external#> .
+@prefix edm:  <http://www.europeana.eu/schemas/edm/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+@prefix ore:  <http://www.openarchives.org/ore/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+
+
+################################################################################
+# Validation Rules for the edm:Agent class
+################################################################################
+
+esh:VR-Agent
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:Agent ;
+.
+
+
+################################################################################
+# Validation Rules for the edm:Place class
+################################################################################
+
+esh:VR-Place
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:Place ;
+.
+
+
+################################################################################
+# Validation Rules for the edm:TimeSpan class
+################################################################################
+
+esh:VR-TimeSpan
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:TimeSpan ;
+.
+
+################################################################################
+# Validation Rules for the skos:Concept class
+################################################################################
+
+esh:VR-Concept
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass skos:Concept ;
+.

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:edm="http://www.europeana.eu/schemas/edm/"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:dcterms="http://purl.org/dc/terms/"
+         xmlns:ebucore="http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#"
+         xmlns:ore="http://www.openarchives.org/ore/terms/"
+         xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+         >
+
+    <ore:Aggregation rdf:about="http://data.europeana.eu/aggregation/provider/09102/_UEDIN_214">
+        <edm:aggregatedCHO rdf:resource="http://data.europeana.eu/item/09102/_UEDIN_214"/>
+        <edm:dataProvider>University of Edinburgh</edm:dataProvider>
+        <edm:hasView rdf:resource="http://www.mimo-db.eu/media/UEDIN/VIDEO/0032195v.mpg"/>
+        <edm:hasView rdf:resource="http://www.mimo-db.eu/media/UEDIN/AUDIO/0032195s.mp3"/>
+        <edm:hasView rdf:resource="http://www.mimo-db.eu/media/UEDIN/IMAGE/0032195c.jpg"/>
+        <edm:isShownAt rdf:resource="http://www.mimo-db.eu/UEDIN/214"/>
+        <edm:isShownBy rdf:resource="http://www.mimo-db.eu/media/UEDIN/IMAGE/0032195c.jpg"/>
+        <edm:object rdf:resource="http://www.mimo-db.eu/media/UEDIN/IMAGE/0032195c.jpg"/>
+        <edm:provider>MIMO - Musical Instrument Museums Online</edm:provider>
+        <edm:rights rdf:resource="http://creativecommons.org/licenses/by-nc-sa/3.0/"/>
+    </ore:Aggregation>
+
+    <edm:ProvidedCHO rdf:about="http://data.europeana.eu/item/09102/_UEDIN_214">
+        <dc:coverage xml:lang="en">Probably France</dc:coverage>
+        <dc:coverage xml:lang="en">Probably London</dc:coverage>
+        <dcterms:spatial xml:lang="en">Probably France</dcterms:spatial>
+        <dc:date>Circa 1840</dc:date>
+        <dcterms:created>Circa 1840</dcterms:created>
+        <dc:description>Technical description: Brass; ligature fitting on bell section at joint; stockings on main slides. Bell with one coil, angled to face forwards. Repair History: Main slide possibly not original (tenon of slide section of joint is tapered, bell section joint for cylindrical tenon).</dc:description>
+        <dc:subject>Musical Instruments</dc:subject>
+        <dc:title>Buccin trombone. Nominal pitch: B?.</dc:title>
+        <dc:type rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4378"/>
+        <edm:type>IMAGE</edm:type>
+        <dc:contributor>Myself</dc:contributor>
+        <dc:contributor rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4378"/>
+    </edm:ProvidedCHO>
+
+    <edm:Agent rdf:about="http://www.mimo-db.eu/media/UEDIN">
+    </edm:Agent>
+
+    <edm:WebResource rdf:about="http://www.mimo-db.eu/media/UEDIN/VIDEO/0032195v.mpg">
+        <dc:description>Performance with Buccin Trombone </dc:description>
+        <dc:format>MPG format</dc:format>
+        <dc:rights>WebResource - dc:rights</dc:rights>
+        <dc:source>video tape</dc:source>
+        <dcterms:conformsTo>WebResource - dcterms:conformsTo</dcterms:conformsTo>
+        <dcterms:created>2010</dcterms:created>
+        <dcterms:extent>10 minutes</dcterms:extent>
+        <dcterms:hasPart rdf:resource="http://WebResource-edm-hasPart"/>
+        <dcterms:issued>WebResource - dcterms:issued</dcterms:issued>
+        <edm:isNextInSequence rdf:resource="http://WebResource-edm-isNextInSequence.eu"/>
+        <edm:rights rdf:resource="http://creativecommons.org/licenses/by-nc-sa/3.0/"/>
+        <edm:codecName>mpeg2video</edm:codecName>
+        <ebucore:hasMimeType>video/mpeg</ebucore:hasMimeType>
+        <ebucore:fileByteSize rdf:datatype="http://www.w3.org/2001/XMLSchema#long">19480576</ebucore:fileByteSize>
+        <ebucore:duration>40411</ebucore:duration>
+        <ebucore:width rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">720</ebucore:width>
+        <ebucore:height rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">576</ebucore:height>
+        <ebucore:frameRate rdf:datatype="http://www.w3.org/2001/XMLSchema#double">25.0</ebucore:frameRate>
+        <ebucore:orientation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">landscape</ebucore:orientation>
+     </edm:WebResource>
+
+     <edm:WebResource rdf:about="http://www.mimo-db.eu/media/UEDIN/AUDIO/0032195s.mp3">
+         <edm:rights rdf:resource="http://creativecommons.org/licenses/by-nc-sa/3.0/"/>
+         <ebucore:hasMimeType>audio/mpeg</ebucore:hasMimeType>
+         <ebucore:fileByteSize rdf:datatype="http://www.w3.org/2001/XMLSchema#long">485349</ebucore:fileByteSize>
+         <ebucore:duration>30334</ebucore:duration>
+         <ebucore:sampleRate rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">44100</ebucore:sampleRate>
+         <ebucore:bitRate rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">128000</ebucore:bitRate>
+     </edm:WebResource>
+         
+     <edm:WebResource rdf:about="http://www.mimo-db.eu/media/UEDIN/IMAGE/0032195c.jpg">
+         <dc:rights>WebResource - dc:rights</dc:rights>
+         <edm:rights rdf:resource="http://www.europeana.eu/rights/rr-f/"/>
+     </edm:WebResource>
+
+     <edm:WebResource rdf:about="http://www.mimo-db.eu/UEDIN/214"/>
+
+     <skos:Concept rdf:about="http://www.mimo-db.eu/InstrumentsKeywords/4378">
+         <skos:altLabel>Concept - skos:altLabel</skos:altLabel>
+         <skos:prefLabel xml:lang="de">Buccin</skos:prefLabel>
+         <skos:prefLabel xml:lang="it">Buccin-trombone</skos:prefLabel>
+         <skos:prefLabel xml:lang="sv">Buccin</skos:prefLabel>
+         <skos:prefLabel xml:lang="fr">Buccin</skos:prefLabel>
+         <skos:prefLabel xml:lang="en">Buccin</skos:prefLabel>
+         <skos:prefLabel xml:lang="nl">Buccin</skos:prefLabel>
+         <skos:notation>Concept - skos:notation</skos:notation>
+         <skos:note>Concept - skos:note</skos:note>
+         <skos:broader rdf:resource="http://Concept-skos-narrower.eu"/>
+         <skos:broadMatch rdf:resource="http://Concept-skos-broadMatch.eu"/>
+         <skos:closeMatch rdf:resource="http://Concept-skos-relatedMatch.eu"/>
+         <skos:closeMatch rdf:resource="http://Concept-skos-closeMatch.eu"/>
+         <skos:exactMatch rdf:resource="http://Concept-skos-exactMatch.eu"/>
+         <skos:narrower rdf:resource="http://Concept-skos-narrower.eu"/>
+         <skos:narrowMatch rdf:resource="http://Concept-skos-narrowMatch.eu"/>
+         <skos:related rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/356"/>
+      </skos:Concept>
+
+    <skos:Concept rdf:about="http://www.mimo-db.eu/HornbostelAndSachs/356">
+        <skos:prefLabel>423.22 Labrosones with slides</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">423.22 Labrosones with slides</skos:prefLabel>
+        <skos:note>The air itself is the vibrator in the primary sense. The standing waves are significantly confined within the instrument itself. The air-stream passes through the player?s vibrating lips, so gaining intermittent access to the air column which is to be made to vibrate. The body of the instrument is a tube with a telescopic section that can be extended while it is played to modify the pitch. Europe slide trumpet, trombone. (This category includes slide trombones with one or two thumb valves.)</skos:note>
+        <skos:broader rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/351"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4368"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/6401"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4362"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4361"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4367"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4378"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4443"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4369"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4364"/>
+    </skos:Concept>
+
+    <skos:Concept rdf:about="http://www.mimo-db.eu/HornbostelAndSachs/245">
+        <skos:prefLabel>42 Wind instruments proper</skos:prefLabel>
+        <skos:note>The air itself is the vibrator in the primary sense. The standing waves are significantly confined within the instrument itself.</skos:note>
+        <skos:broader rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/225"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/6222"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/333"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/312"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/247"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/246"/>
+    </skos:Concept>
+
+    <skos:Concept rdf:about="http://www.mimo-db.eu/HornbostelAndSachs/333">
+        <skos:prefLabel>423 Labrosones (or lip-reed instruments)</skos:prefLabel>
+        <skos:note>The air itself is the vibrator in the primary sense. The standing waves are significantly confined within the instrument itself. The air-stream passes through the player?s vibrating lips, so gaining intermittent access to the air column which is to be made to vibrate.</skos:note>
+        <skos:broader rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/245"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/351"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/334"/>
+        <skos:related rdf:resource="http://www.mimo-db.eu/InstrumentsKeywords/4129"/>
+    </skos:Concept>
+
+    <skos:Concept rdf:about="http://www.mimo-db.eu/HornbostelAndSachs/351">
+        <skos:prefLabel>423.2 Chromatic labrosones</skos:prefLabel>
+        <skos:note>The air itself is the vibrator in the primary sense. The standing waves are significantly confined within the instrument itself. The air-stream passes through the player?s vibrating lips, so gaining intermittent access to the air column which is to be made to vibrate. The body of the instrument is a tube with extra devices to modify the pitch.</skos:note>
+        <skos:broader rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/333"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/357"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/356"/>
+        <skos:narrower rdf:resource="http://www.mimo-db.eu/HornbostelAndSachs/352"/>
+    </skos:Concept>
+
+</rdf:RDF>
