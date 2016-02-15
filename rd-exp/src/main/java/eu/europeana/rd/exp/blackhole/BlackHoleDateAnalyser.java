@@ -1,7 +1,7 @@
 /**
  * 
  */
-package eu.europeana.rd.dates;
+package eu.europeana.rd.exp.blackhole;
 
 import java.io.File;
 import java.io.InputStream;
@@ -20,9 +20,9 @@ import javax.xml.transform.stream.StreamSource;
 public class BlackHoleDateAnalyser
 {
     public static String FILE_DATE_RESULTS_XSLT
-        = "etc/dp/dates/DateResults.xsl";
+        = "etc/blackhole/DateResults.xsl";
     public static String FILE_DATE_PATTERNS_XSLT
-        = "etc/dp/dates/DatePatterns.xsl";
+        = "etc/blackhole/DatePatterns.xsl";
 
     private Transformer _tDateResult;
     private Transformer _tDatePatterns;

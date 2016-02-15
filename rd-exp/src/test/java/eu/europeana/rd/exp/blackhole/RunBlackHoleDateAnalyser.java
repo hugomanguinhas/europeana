@@ -1,7 +1,7 @@
 /**
  * 
  */
-package eu.europeana.rd.dates;
+package eu.europeana.rd.exp.blackhole;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -13,6 +13,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import eu.europeana.rd.exp.blackhole.BlackHoleDateAnalyser;
+
 /**
  * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
  * @since 9 Sep 2015
@@ -20,9 +22,9 @@ import javax.xml.transform.stream.StreamSource;
 public class RunBlackHoleDateAnalyser
 {
     private static final String FILE_DCT_CREATED
-        = "etc/dp/dates/dctermscreated350000.xml";
+        = "etc/blackhole/dctermscreated350000.xml";
     private static final String FILE_DCT_ISSUED
-        = "etc/dp/dates/dctermsissued350000.xml";
+        = "etc/blackhole/dctermsissued350000.xml";
 
     public static void main(String... args)
            throws TransformerException, URISyntaxException
