@@ -19,7 +19,7 @@ import eu.europeana.rd.exp.blackhole.BlackHoleDateAnalyser;
  * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
  * @since 9 Sep 2015
  */
-public class RunBlackHoleDateAnalyser
+public class RunBlackHoleExperiment
 {
     private static final String FILE_DCT_CREATED
         = "etc/blackhole/dctermscreated350000.xml";
