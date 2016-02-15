@@ -50,9 +50,9 @@ been identified so far.
 ## Resources
 
 The XSLTs created for this experiment:
-* [DateResults.xsl](./src/main/resources/etc/blackhole/DateResults.xsl): 
+* [DateResults.xsl](../src/main/resources/etc/blackhole/DateResults.xsl): 
 Performs the calculations for each date applying the patterns given as parameter.
-* [DatePatterns.xsl](./src/main/resources/etc/blackhole/DatePatterns.xsl): 
+* [DatePatterns.xsl](../src/main/resources/etc/blackhole/DatePatterns.xsl): 
 Performs the calculations for each date applying the patterns given as parameter.
 
 The two source files obtained using the Europeana API:
@@ -65,7 +65,7 @@ The results obtained for each source file:
 To run the software using as source files the ones on the maven test directory 
 and using the predefined patterns, just execute the java class 
 [RunBlackHoleExperiment.java]
-(/src/main/java/eu/europeana/rd/exp/blackhole/RunBlackHoleExperiment.java), 
+(../src/main/java/eu/europeana/rd/exp/blackhole/RunBlackHoleExperiment.java), 
 like so:
 java eu.europeana.rd.exp.blackhole.RunBlackHoleExperiment
 

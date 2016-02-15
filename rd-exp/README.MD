@@ -6,7 +6,7 @@ involved with and/or worked on.
 **Contact:** Hugo Manguinhas (hugo.manguinhas@europeana.eu)
 
 ##List of all Experiments
-* [The 20th Century Black Hole investigation](experiments/BlackHole.MD)
+* [The 20th Century Black Hole investigation](experiments/BlackHole.md)
 
 ## License
 Copyright 2007-2012 The Europeana Foundation Licenced under the EUPL, 
