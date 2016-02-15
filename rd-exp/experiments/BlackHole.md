@@ -65,15 +65,16 @@ The results obtained for each source file:
 To run the software using as source files the ones on the maven test directory 
 and using the predefined patterns in the XSLTs, just execute the java class 
 [RunBlackHoleExperiment.java]
-(../src/main/java/eu/europeana/rd/exp/blackhole/RunBlackHoleExperiment.java), 
+(../src/test/java/eu/europeana/rd/exp/blackhole/RunBlackHoleExperiment.java), 
 like so:
 ```
 java eu.europeana.rd.exp.blackhole.RunBlackHoleExperiment
 ```
 
 * If you wish to run the experiment over different source data, you can either 
-change the java file directly or use class BlackHoleDateAnalyser.java in our 
-code.
+change the java file directly or use class [BlackHoleDateAnalyser.java]
+(../src/main/java/eu/europeana/rd/exp/blackhole/BlackHoleDateAnalyser.java) 
+in your code.
 
 * If you with to try different date patterns, you can either add them directly 
 to the XSLT files or define them using the BlackHoleDateAnalyser.java specific constructor.
