@@ -49,10 +49,10 @@ been identified so far.
 
 ## Resources
 
-The XSLTs designed for the experiment:
-* [DateResults.xsl](/src/main/resources/etc/blackhole/DateResults.xsl): 
+The XSLTs created for this experiment:
+* [DateResults.xsl](./src/main/resources/etc/blackhole/DateResults.xsl): 
 Performs the calculations for each date applying the patterns given as parameter.
-* [DatePatterns.xsl](/src/main/resources/etc/blackhole/DatePatterns.xsl): 
+* [DatePatterns.xsl](./src/main/resources/etc/blackhole/DatePatterns.xsl): 
 Performs the calculations for each date applying the patterns given as parameter.
 
 The two source files obtained using the Europeana API:
