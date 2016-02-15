@@ -5,10 +5,9 @@ necessary information to run the 20th Century Black Hole investigation.
 
 Contact: Hugo Manguinhas (hugo.manguinhas@europeana.eu)
 
-Additional see:
-[Europeana BlogPost on Pro] (http://pro.europeana.eu/blogpost/the-missing-decades-the-20th-century-black-hole-in-europeana)
-
-[Europeana Factsheet on the 20th Century Black Hole]
+For additional information, see:
+* [Europeana BlogPost on Pro] (http://pro.europeana.eu/blogpost/the-missing-decades-the-20th-century-black-hole-in-europeana)
+* [Europeana Factsheet on the 20th Century Black Hole]
 (http://pro.europeana.eu/files/Europeana_Professional/Advocacy/Twentieth%20Century%20Black%20Hole/copy-of-europeana-policy-illustrating-the-20th-century-black-hole-in-the-europeana-dataset.pdf)
 
 ## Introduction
