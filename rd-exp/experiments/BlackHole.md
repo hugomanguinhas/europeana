@@ -6,7 +6,7 @@ As cultural heritage institutions across Europe digitize more and more of their 
 make them available online, an alarming pattern is starting to emerge. Collections that consist
 of works dating from the 20th century or that contain large proportions of works from that
 period are available online to a much lesser degree than collections from the periods before
-or after the 20th century. This effect has been called ‘the 20th century black hole’ and can be
+or after the 20th century. This effect has been called "*the 20th century black hole*" and can be
 attributed to the way copyright interacts with the digitization of cultural heritage collections.
 
 *The purpose of this work was to use the Europeana dataset to explore this claim.*
@@ -29,11 +29,11 @@ The following major steps were performed for this experiment:
 
 For this investigation, it was decided to use only the values from 
 dcterms:issued (please see the report for more information on the reasons behind this decision).
-In order to get the data we needed we queried the Europeana API. Since we wanted to
+To get the data we needed, we queried the Europeana API. Since we wanted to
 query only for the values of dcterms:issued, we chose to use the faceted search
 with a limit of 350.000 items which significantly reduced the size of the output 
-and time needed to get all the necessary values. This is the query that we have
-used:
+(values come clustered, order by frequency and with hit counts) and time needed 
+to get all the necessary values. This is the query that we have used:
 ```
 http://www.europeana.eu/api/v2/search.json?query=*:*&profile=facets&facet=proxy_dcterms_issued&rows=0&f.proxy_dcterms_issued.facet.limit=350000&wskey=api2demo
 ```
