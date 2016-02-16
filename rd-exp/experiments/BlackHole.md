@@ -21,7 +21,7 @@ the necessary information to run the 20th Century Black Hole investigation.
 
 Contact: Hugo Manguinhas (hugo.manguinhas@europeana.eu)
 
-## Methodolody
+## Methodology
 
 The following major steps were performed for this experiment:
 
