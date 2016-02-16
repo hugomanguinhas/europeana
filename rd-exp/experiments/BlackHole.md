@@ -47,8 +47,8 @@ for property "dcterms:created" which ended up not being used for this work.
 
 When analysing the dates that we obtained by querying the Europeana API, we understood
 that dates are represented in various ways: 
-* with different formats
-* ordinal/cardinal forms
+* different formats (e.g. YYYY-MM-DD, DD-MM-YYYY)
+* ordinal/cardinal forms 
 * date ranges
 * additions/annotations stating the actual meaning of that date
 
