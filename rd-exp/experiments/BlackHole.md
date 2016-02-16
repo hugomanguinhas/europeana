@@ -76,5 +76,7 @@ change the java file directly or use class [BlackHoleDateAnalyser.java]
 (../src/main/java/eu/europeana/rd/exp/blackhole/BlackHoleDateAnalyser.java) 
 in your code.
 
-* If you with to try different date patterns, you can either add them directly 
-to the XSLT files or define them using the BlackHoleDateAnalyser.java specific constructor.
+* If you wish to try different date patterns, you can either add them directly 
+to the XSLT files or define them using the [BlackHoleDateAnalyser.java]
+(../src/main/java/eu/europeana/rd/exp/blackhole/BlackHoleDateAnalyser.java) 
+specific constructor.
