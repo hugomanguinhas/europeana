@@ -40,10 +40,15 @@ public class RunBlackHoleExperiment
         for ( String resource : rsrcs )
         {
             File   file = new File(cl.getResource(resource).getFile());
-            String fn   = file.getName();
-            File   dir  = file.getParentFile();
-            analyser.analyse(file, new File(dir, fn + ".results.csv")
-                           , new File(dir, fn + ".patterns.csv"));
+            analyser.analyse(file, getFile(file, ".results.csv")
+                           , getFile(file, ".patterns.csv"));
         }
+    }
+
+    private static File getFile(File file, String suffix)
+    {
+        String fn     = file.getName();
+        String prefix = fn.substring(0, fn.lastIndexOf("."));
+        return new File(file.getParentFile(), prefix + suffix);
     }
 }

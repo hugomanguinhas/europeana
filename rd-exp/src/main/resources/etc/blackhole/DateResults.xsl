@@ -62,7 +62,7 @@
 
         <xsl:value-of select="$date"/>
         <xsl:text>,</xsl:text>
-        <xsl:value-of select="sum($s2/text())"/>
+        <xsl:value-of select="format-number(sum($s2/text()), '#')"/>
         <xsl:text>,</xsl:text>
         <xsl:text>"</xsl:text><xsl:value-of select="fn:string-join($s2/@name,'|')"/><xsl:text>"</xsl:text>
         <xsl:text>&#xa;</xsl:text>

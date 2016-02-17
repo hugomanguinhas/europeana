@@ -52,7 +52,7 @@
             <xsl:text>"</xsl:text><xsl:value-of select="$p"/><xsl:text>"</xsl:text>
 
             <xsl:text>,</xsl:text>
-            <xsl:value-of select="sum($s/text())"/>
+            <xsl:value-of select="format-number(sum($s/text()), '#')"/>
             <xsl:text>&#xa;</xsl:text>
 
             <xsl:for-each select="$s">
@@ -71,7 +71,10 @@
         <xsl:text>Unmatched patterns&#xa;</xsl:text>
         <xsl:variable name="s" select="$nodes[not (some $x in $patterns satisfies fn:matches(string(@name),$x))]"/>
         <xsl:for-each select="$s">
-            <xsl:value-of select="./@name"/><xsl:text>&#xa;</xsl:text>
+            <xsl:text>,</xsl:text>
+            <xsl:text>,"</xsl:text>
+            <xsl:value-of select="./@name"/>
+            <xsl:text>"&#xa;</xsl:text>
         </xsl:for-each>
     </xsl:template>
 
