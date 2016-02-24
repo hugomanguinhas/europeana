@@ -55,17 +55,18 @@ public class TopBraidValidator extends AbsRecordValidator
     public Model validate(Model data)
     {
         // (here, using a temporary URI for the shapes graph)
-        URI shapesGraphURI = URI.create("urn:x-shacl-shapes-graph:" + UUID.randomUUID().toString());
+        String uuid      = UUID.randomUUID().toString();
+        URI    shapesURI = URI.create("urn:x-shacl-shapes-graph:" + uuid);
 
         Dataset dataset = ARQFactory.get().getDataset(data);
-        dataset.addNamedModel(shapesGraphURI.toString(), _validationModel);
+        dataset.addNamedModel(shapesURI.toString(), _validationModel);
 
         Model results = null;
         long time = System.currentTimeMillis();
 
         try {
-            results = _validator.validateModel(
-                    dataset, shapesGraphURI, null, false, null);
+            results = _validator.validateModel(dataset, shapesURI
+                                             , null, false, null);
         }
         catch (InterruptedException e) {}
 
@@ -78,14 +79,12 @@ public class TopBraidValidator extends AbsRecordValidator
 
 
     /***************************************************************************
-     * Private Methods
+     * Public Static Methods
      **************************************************************************/
-
-    private static Model getValidationModelForEDMExternal()
+    public static Model getValidationModel(Model shapesModel)
     {
         MultiUnion unionGraph = new MultiUnion(new Graph[] {
-            getSHACL().getGraph(),
-            getShapesForEDMExternal().getGraph()
+            getSHACL().getGraph(), shapesModel.getGraph()
         });
         Model m = ModelFactory.createModelForGraph(unionGraph);
 
@@ -95,6 +94,15 @@ public class TopBraidValidator extends AbsRecordValidator
         // dataModel = SHACLUtil.withDefaultValueTypeInferences(shapesModel);
         SHACLFunctions.registerFunctions(m);
         return m;
+    }
+
+    /***************************************************************************
+     * Private Methods
+     **************************************************************************/
+
+    private static Model getValidationModelForEDMExternal()
+    {
+        return getValidationModel(getShapesForEDMExternal());
     }
 
     private static Model getValidationModel(ShapesType type)

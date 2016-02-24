@@ -1,9 +1,5 @@
-@prefix :     <http://www.europeana.eu/schemas/shapes/external#> .
 @prefix sh:   <http://www.w3.org/ns/shacl#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-
-@prefix esh:  <http://www.europeana.eu/schemas/shapes/external#> .
-@prefix edm:  <http://www.europeana.eu/schemas/edm/> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix dc:   <http://purl.org/dc/elements/1.1/> .
 @prefix ore:  <http://www.openarchives.org/ore/terms/> .
@@ -11,62 +7,76 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix edm:  <http://www.europeana.eu/schemas/edm/> .
 
+@prefix :     <http://www.europeana.eu/schemas/shapes/external/ProvidedCHO#> .
 
 ################################################################################
-# Validation Rules for the edm:ProvidedCHO class
+# Shape Graph for edm:ProvidedCHO
 ################################################################################
 
-esh:VR-ProvidedCHO
+<http://www.europeana.eu/schemas/shapes/external/ProvidedCHO#>
+  rdf:type owl:Ontology, sh:Graph ;
+  owl:versionInfo "Draft version for edm:ProvidedCHO Class"^^xsd:string ;
+  sh:shapesGraph <http://www.w3.org/ns/shacl> ;
+.
+
+################################################################################
+# Base Shape for the edm:ProvidedCHO Class
+################################################################################
+
+:base
   a sh:Shape ;
   rdfs:subClassOf rdfs:Resource ;
   sh:scopeClass edm:ProvidedCHO ;
 
-  sh:inverseProperty esh:VR-ProvidedCHO-aggregatedCHO ;
-  sh:constraint      esh:VR-ProvidedCHO-props ;
+  sh:inverseProperty :aggregatedCHO ;
+  sh:constraint      :props ;
 
-  sh:property        esh:VR-ProvidedCHO-contributor-card ;
-  sh:property        esh:VR-ProvidedCHO-contributor-class ;
+  sh:property        :contributor-card ;
+  sh:property        :contributor-class ;
 
-  sh:property        esh:VR-ProvidedCHO-coverage-card ;
-  sh:property        esh:VR-ProvidedCHO-coverage-quality ;
-  sh:property        esh:VR-ProvidedCHO-coverage-class ;
-  sh:property        esh:VR-ProvidedCHO-coverage-subprop ;
+  sh:property        :coverage-card ;
+  sh:property        :coverage-quality ;
+  sh:property        :coverage-class ;
+  sh:property        :coverage-subprop ;
 
-  sh:property        esh:VR-ProvidedCHO-creator-card ;
-  sh:property        esh:VR-ProvidedCHO-creator-class ;
+  sh:property        :creator-card ;
+  sh:property        :creator-class ;
 
-  sh:property        esh:VR-ProvidedCHO-date-card ;
-  sh:property        esh:VR-ProvidedCHO-date-class ;
-  sh:property        esh:VR-ProvidedCHO-date-literal ;
-  sh:property        esh:VR-ProvidedCHO-date-quality ;
-  sh:property        esh:VR-ProvidedCHO-date-subprop ;
+  sh:property        :date-card ;
+  sh:property        :date-class ;
+  sh:property        :date-literal ;
+  sh:property        :date-quality ;
+  sh:property        :date-subprop ;
 
-  sh:property        esh:VR-ProvidedCHO-description-card ;
+  sh:property        :description-card ;
 
-  sh:property        esh:VR-ProvidedCHO-format-card ;
+  sh:property        :format-card ;
 
-  sh:property        esh:VR-ProvidedCHO-identifier-type ;
+  sh:property        :identifier-type ;
 
-  sh:property        esh:VR-ProvidedCHO-language-type ;
-  sh:property        esh:VR-ProvidedCHO-language-values ;
+  sh:property        :language-type ;
+  sh:property        :language-values ;
 
-  sh:property        esh:VR-ProvidedCHO-publisher-class ;
+  sh:property        :publisher-class ;
 
-  sh:property        esh:VR-ProvidedCHO-rights-subprop ;
+  sh:property        :rights-subprop ;
 
-  sh:property        esh:VR-ProvidedCHO-subject-class ;
-  sh:property        esh:VR-ProvidedCHO-subject-mutiplevalue ;
+  sh:property        :subject-class ;
+  sh:property        :subject-mutiplevalue ;
 
-  sh:property        esh:VR-ProvidedCHO-edmtype-type ;
-  sh:property        esh:VR-ProvidedCHO-edmtype-card ;
-  sh:property        esh:VR-ProvidedCHO-edmtype-values ;
+  sh:property        :edmtype-type ;
+  sh:property        :edmtype-card ;
+  sh:property        :edmtype-values ;
 .
 
 
-# Constraint Declarations for edm:ProvidedCHO #
+################################################################################
+# All Constraint Declarations
+################################################################################
 
-esh:VR-ProvidedCHO-aggregatedCHO
+:aggregatedCHO
   a sh:PropertyConstraint ;
   dc:description "Check that the URI of the ProvidedCHO and the URI described in edm:aggregatedCHO are the same." ;
   skos:scopeNote "R-225-Validation-of-class-association" ;
@@ -76,10 +86,10 @@ esh:VR-ProvidedCHO-aggregatedCHO
   sh:maxCount 1 ; #this enforces uniqueness
 .
 
-#esh:VR-ProvidedCHO-uniqueness ?
+#:uniqueness ?
 
 # the constraint for edm:type was taken out of this rule
-esh:VR-ProvidedCHO-props
+:props
   a sh:AndConstraint ;
   dc:description "Check that if edm:ProvidedCHO is present, at least: one dc:title or dc:description should be present; one dc:subject or dc:type or dc:coverage or dcterms:spatial and edm:type should be present" ;
   skos:scopeNote "R-68-REQUIRED-PROPERTIES" ;
@@ -108,13 +118,13 @@ esh:VR-ProvidedCHO-props
   ) ;
 .
 
-esh:VR-ProvidedCHO-contributor-card  # not really necessary
+:contributor-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:contributor ;
   sh:minCount 0 ;
 .
 
-esh:VR-ProvidedCHO-contributor-class
+:contributor-class
   a sh:PropertyConstraint ;
   dc:description "the reference should be one to an Agent (the access to the data and the data itself should be formatted according to the Agent specifications.)" ;
   skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
@@ -126,16 +136,16 @@ esh:VR-ProvidedCHO-contributor-class
           sh:nodeType sh:IRI ;
       ]
   ] ;
-  sh:valueShape esh:VR-Agent ;
+  sh:valueShape <http://www.europeana.eu/schemas/shapes/external/Agent#base> ;
 .
 
-esh:VR-ProvidedCHO-coverage-card  # not really necessary
+:coverage-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:coverage ;
   sh:minCount 0 ;
 .
 
-esh:VR-ProvidedCHO-coverage-quality
+:coverage-quality
   a sh:PropertyConstraint ;
   dc:description "If two dc:coverage are present, suggest the use of dcterms:spatial or dcterms:temporal." ;
   skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
@@ -145,7 +155,7 @@ esh:VR-ProvidedCHO-coverage-quality
   sh:message "Suggest the use of dcterms:spatial or dcterms:temporal" ;
 .
 
-esh:VR-ProvidedCHO-coverage-class
+:coverage-class
   a sh:PropertyConstraint ;
   dc:description "If the value is a URI, check if it refers to a TimeSpan or a Place that is declared in the document." ;
   sh:predicate dc:coverage ;
@@ -158,12 +168,15 @@ esh:VR-ProvidedCHO-coverage-class
   sh:valueShape [
     sh:constraint [
       a sh:OrConstraint ;
-      sh:shapes ( esh:VR-Place esh:VR-TimeSpan )
+      sh:shapes ( 
+        <http://www.europeana.eu/schemas/shapes/external/Place#base>
+        <http://www.europeana.eu/schemas/shapes/external/TimeSpan#base> 
+      )
     ] ;
   ] ;
 .
 
-esh:VR-ProvidedCHO-coverage-subprop
+:coverage-subprop
   a sh:AndConstraint ;
   dc:description "If dc:coverage and dcterms:spatial or dcterms:temporal are present, check that the value in dc:coverage is not redundant with dcterms:spatial or dcterms:temporal for ingestion" ;
   skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
@@ -182,13 +195,13 @@ esh:VR-ProvidedCHO-coverage-subprop
   )
 .
 
-esh:VR-ProvidedCHO-creator-card  # not really necessary
+:creator-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:creator ;
   sh:minCount 0 ;
 .
 
-esh:VR-ProvidedCHO-creator-class
+:creator-class
   a sh:PropertyConstraint ;
   dc:description "the reference should be one to an Agent (the access to the data and the data itself should be formatted according to the Agent specifications.)" ;
   skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
@@ -199,16 +212,16 @@ esh:VR-ProvidedCHO-creator-class
           sh:nodeType sh:IRI ;
       ]
   ] ;
-  sh:valueShape esh:VR-Agent ;
+  sh:valueShape <http://www.europeana.eu/schemas/shapes/external/Agent#base> ;
 .
 
-esh:VR-ProvidedCHO-date-card  # not really necessary
+:date-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:date ;
   sh:minCount 0 ;
 .
 
-esh:VR-ProvidedCHO-date-class
+:date-class
   a sh:PropertyConstraint ;
   dc:description "the reference should be one to a TimeSpan (the access to the data and the data itself should be formatted according to the TimeSpan specifications.)" ;
   skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
@@ -219,10 +232,10 @@ esh:VR-ProvidedCHO-date-class
           sh:nodeType sh:IRI ;
       ]
   ] ;
-  sh:valueShape esh:VR-TimeSpan ;
+  sh:valueShape <http://www.europeana.eu/schemas/shapes/external/TimeSpan#base> ;
 .
 
-esh:VR-ProvidedCHO-date-literal
+:date-literal
   a sh:PropertyConstraint ;
   dc:description "Check that the value for date matches ISO 8601 starting with the year and hyphenating the day and month parts: YYYY-MM-DD ";
   skos:scopeNote "R-44-PATTERN-MATCHING-ON-RDF-LITERALS" ;
@@ -236,7 +249,7 @@ esh:VR-ProvidedCHO-date-literal
   sh:pattern "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$" ; #does not check for valid dates but could be expanded
 .
 
-esh:VR-ProvidedCHO-date-quality
+:date-quality
   a sh:PropertyConstraint ;
   dc:description "If two dc:date are present, suggest the use of dcterms created or dcterms:issued." ;
   skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
@@ -246,7 +259,7 @@ esh:VR-ProvidedCHO-date-quality
   sh:message "Suggest the use of dcterms:created or dcterms:issued" ;
 .
 
-esh:VR-ProvidedCHO-date-subprop
+:date-subprop
   a sh:AndConstraint ;
   dc:description "If dc:date and dcterms:created or dcterms:issued are present, check that the value in dc:date is not redundant with dcterms:created or dctersm:issued for ingestion" ;
   skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
@@ -265,31 +278,31 @@ esh:VR-ProvidedCHO-date-subprop
   )
 .
 
-esh:VR-ProvidedCHO-description-card  # not really necessary
+:description-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:description ;
   sh:minCount 0 ;
 .
 
-esh:VR-ProvidedCHO-format-card  # not really necessary
+:format-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:format ;
   sh:minCount 0 ;
 .
 
-esh:VR-ProvidedCHO-identifier-type
+:identifier-type
   a sh:PropertyConstraint ;
   sh:predicate dc:identifier ;
   sh:nodeKind sh:Literal ;
 .
 
-esh:VR-ProvidedCHO-language-type
+:language-type
   a sh:PropertyConstraint ;
   sh:predicate dc:language ;
   sh:nodeKind sh:Literal ;
 .
 
-esh:VR-ProvidedCHO-language-values
+:language-values
   a sh:PropertyConstraint ;
   dc:description "Check that the value for language matches ISO 639 two-letter code if it exists at http://www.loc.gov/standards/iso639-2/php/code_list.php otherwise accept three-letter code." ;
   skos:scopeNote "R-49-PROPERTY-OCCURS-ONCE-PER-LANGUAGE-TAG" ;
@@ -298,7 +311,7 @@ esh:VR-ProvidedCHO-language-values
   sh:pattern "^[a-z]{2}$" ; #alternative is to have the full list of acceptable values
 .
 
-esh:VR-ProvidedCHO-publisher-class
+:publisher-class
   a sh:PropertyConstraint ;
   dc:description "-the reference should be one to an Agent( the access to the data and the data itself should be formatted according to the Agent specifications.)" ;
   skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
@@ -309,10 +322,10 @@ esh:VR-ProvidedCHO-publisher-class
           sh:nodeType sh:IRI ;
       ]
   ] ;
-  sh:valueShape esh:VR-Agent ;
+  sh:valueShape <http://www.europeana.eu/schemas/shapes/external/Agent#base> ;
 .
 
-esh:VR-ProvidedCHO-rights-subprop
+:rights-subprop
   a sh:NotEqualsConstraint ;
   dc:description "Check if dc:rights has the same value than edm:rights either as rdf:resource or literal,  if yes the field is redundant" ;
   skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
@@ -321,7 +334,7 @@ esh:VR-ProvidedCHO-rights-subprop
   sh:predicate2 edm:rights ;
 .
 
-esh:VR-ProvidedCHO-subject-class
+:subject-class
   a sh:PropertyConstraint ;
   dc:description "The reference should be one to a Concept( the access to the data and the data itself should be formatted according to the Concept specifications.)" ;
   skos:scopeNote "R-171-VALIDATION-OF-URIS-BY-DEREFERENCING" ;  
@@ -332,10 +345,10 @@ esh:VR-ProvidedCHO-subject-class
           sh:nodeType sh:IRI ;
       ]
   ] ;
-  sh:valueShape esh:VR-Concept ;
+  sh:valueShape <http://www.europeana.eu/schemas/shapes/external/Concept#base> ;
 .
 
-esh:VR-ProvidedCHO-subject-multiplevalue
+:subject-multiplevalue
   a sh:PropertyConstraint ;
   dc:description "If more than one term is in the field, a new dc:subject should be created." ;
 #  skos:scopeNote "R-224-USE-SUB-SUPER-RELATIONS-IN-VALIDATION" ;
@@ -346,19 +359,19 @@ esh:VR-ProvidedCHO-subject-multiplevalue
   sh:message "More than one term was detected, suggest the use of a new dc:subject field" ;
 .
 
-esh:VR-ProvidedCHO-title-type
+:title-type
   a sh:PropertyConstraint ;
   sh:predicate dc:title ;
   sh:nodeKind sh:Literal ;
 .
 
-esh:VR-ProvidedCHO-dctype-card  # not really necessary
+:dctype-card  # not really necessary
   a sh:PropertyConstraint ;
   sh:predicate dc:type ;
   sh:minCount 0 ;
 .
 
-esh:VR-ProvidedCHO-dctype-class
+:dctype-class
   a sh:PropertyConstraint ;
   dc:description "if the value is a URI, check if a skos:Concept class is created." ;
   dc:description "The reference should be one to a Concept( the access to the data and the data itself should be formatted according to the Concept specifications.)" ;
@@ -370,25 +383,25 @@ esh:VR-ProvidedCHO-dctype-class
           sh:nodeType sh:IRI ;
       ]
   ] ;
-  sh:valueShape esh:VR-Concept ;
+  sh:valueShape <http://www.europeana.eu/schemas/shapes/external/Concept#base> ;
 .
 
 
 
-esh:VR-ProvidedCHO-edmtype-type
+:edmtype-type
   a sh:PropertyConstraint ;
   sh:predicate edm:type ;
   sh:nodeKind sh:Literal ;
 .
 
-esh:VR-ProvidedCHO-edmtype-card
+:edmtype-card
   a sh:PropertyConstraint ;
   sh:predicate edm:type ;
   sh:minCount 1 ;
   sh:maxCount 1 ;
 .
 
-esh:VR-ProvidedCHO-edmtype-values
+:edmtype-values
   a sh:PropertyConstraint ;
   skos:scopeNote "R-30-DEFINE-VALUE-LISTS" ;
   sh:predicate edm:type ;

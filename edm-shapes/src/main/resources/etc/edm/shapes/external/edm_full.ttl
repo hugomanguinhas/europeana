@@ -1,9 +1,4 @@
-# imports: http://www.w3.org/ns/shacl
-
-@prefix :     <http://www.europeana.eu/schemas/shapes/external#> .
-@prefix sh:   <http://www.w3.org/ns/shacl#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-
 @prefix esh:  <http://www.europeana.eu/schemas/shapes/external#> .
 @prefix edm:  <http://www.europeana.eu/schemas/edm/> .
 @prefix dct:  <http://purl.org/dc/terms/> .
@@ -14,17 +9,8 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 
-
-##############################################################################
-#                           RDFS DEFINITIONS                                 #
-##############################################################################
-
-ore:Aggregation a rdfs:Class .
-edm:ProvidedCHO a rdfs:Class .
-edm:WebResource a rdfs:Class .
-edm:Agent       a rdfs:Class .
-skos:Concept    a rdfs:Class .
-
+@prefix :     <http://www.europeana.eu/schemas/shapes/external#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
 
 ##############################################################################
 #                           SHAPE DEFINITIONS                                #
@@ -36,6 +22,8 @@ esh:
   rdf:type owl:Ontology ;
   rdf:type sh:Graph ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+# import RDFS definitions for EDM instead of declaring them above
+  owl:imports <http://www.europeana.eu/schemas/edm/rdf/edm.owl> ;
   sh:shapesGraph <http://www.w3.org/ns/shacl> ;
 .
 

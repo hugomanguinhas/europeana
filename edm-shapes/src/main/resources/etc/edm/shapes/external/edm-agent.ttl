@@ -1,0 +1,32 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix edm:  <http://www.europeana.eu/schemas/edm/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+@prefix ore:  <http://www.openarchives.org/ore/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+
+@prefix :     <http://www.europeana.eu/schemas/shapes/external/Agent#> .
+
+################################################################################
+# Shape Graph for edm:ProvidedCHO
+################################################################################
+
+<http://www.europeana.eu/schemas/shapes/external/Agent#>
+  rdf:type owl:Ontology, sh:Graph ;
+  owl:versionInfo "Draft version for edm:Agent Class"^^xsd:string ;
+  sh:shapesGraph <http://www.w3.org/ns/shacl> ;
+.
+
+################################################################################
+# Base Shape for the edm:Agent Class
+################################################################################
+
+:base
+  a sh:Shape ;
+  rdfs:subClassOf rdfs:Resource ;
+  sh:scopeClass edm:Agent ;
+.

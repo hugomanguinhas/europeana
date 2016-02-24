@@ -35,14 +35,21 @@ public class ShapesUtils
         return m;
     }
 
-    // Load the shapes Model (here, includes the dataModel because that has templates in it)
-    public static Model getShapesForEDMExternal()
+    // Load the shapes Model (here, includes the dataModel 
+    // because that has templates in it)
+    public static Model getShapesModel(InputStream is)
     {
         Class c = ShapesUtils.class;
         Model model = JenaUtil.createMemoryModel();
-        model.read(c.getResourceAsStream(EDM_EXTERNAL_SHAPES_LOCATION)
-                 , "urn:dummy", FileUtils.langTurtle);
+        model.read(is, "urn:dummy", FileUtils.langTurtle);
         return model;
+    }
+
+    public static Model getShapesForEDMExternal()
+    {
+        Class       c  = ShapesUtils.class;
+        InputStream is = c.getResourceAsStream(EDM_EXTERNAL_SHAPES_LOCATION);
+        return getShapesModel(is);
     }
 
     public static void print(Model results, PrintStream ps)
