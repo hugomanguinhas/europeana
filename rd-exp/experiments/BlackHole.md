@@ -110,7 +110,7 @@ The two source files obtained using the Europeana API:
 (../src/test/resources/etc/blackhole/dctermscreated350000.xml): all dates from dcterms:created.
 
 The results obtained for each source file:
-* See 
+* See [maven test resources directory](../src/test/resources/etc/blackhole/).
 
 ## Usage
 To run the software using as source files the ones on the maven test directory 
