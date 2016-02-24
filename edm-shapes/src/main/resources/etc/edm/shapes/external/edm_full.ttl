@@ -16,11 +16,8 @@
 #                           SHAPE DEFINITIONS                                #
 ##############################################################################
 
-# SHAPE
-
 esh:
-  rdf:type owl:Ontology ;
-  rdf:type sh:Graph ;
+  rdf:type owl:Ontology, sh:Graph ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 # import RDFS definitions for EDM instead of declaring them above
   owl:imports <http://www.europeana.eu/schemas/edm/rdf/edm.owl> ;

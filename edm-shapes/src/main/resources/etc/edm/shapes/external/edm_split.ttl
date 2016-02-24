@@ -16,8 +16,6 @@
 #                           SHAPE DEFINITIONS                                #
 ##############################################################################
 
-# SHAPE
-
 esh:
   rdf:type owl:Ontology, sh:Graph ;
   owl:versionInfo "Draft version for EDM shapes profile for EDM external"^^xsd:string ;
