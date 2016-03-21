@@ -77,7 +77,8 @@ public class WikidataDocGenerator
 
     private String escape(String str)
     {
-        return str.replaceAll("\\|", "\\|").replaceAll("’", "\\’");
+        return str.replaceAll("\n", "")
+                  .replaceAll("\\|", "\\|");
         //return str.replaceAll("(|`)", "\\$0");
     }
 
