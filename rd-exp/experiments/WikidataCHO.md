@@ -6,11 +6,6 @@ As a result of projects such as Europeana Sounds and Europeana Art 280, as well
 as other and initiatives such as the Wikidata project Sum of All Paintings, data 
 in Wikidata is refering more and more to objects in the Europeana collection.
 
-This experiment has 
-
-
-*The purpose of this work was to use the Europeana dataset to explore this claim.*
-
 This github project contains the source code that was developed to extract
 data from Wikidata and generate annotations that will link Europeana objects to
 Wikidata entries. 
