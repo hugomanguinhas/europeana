@@ -40,7 +40,7 @@ Wikidata. It shows only the ones for the Europeana 280 Project.
 
 | Europeana Object | Wikidata Entry | Annotation | 
 | --- | --- | --- |
-| [Death Playing Chess, Albertus](http://data.europeana.eu/item/2063602/SWE_280_001) | [](http://www.wikidata.org/entity/Q21257918) | [184](http://test-annotations.europeana.eu/annotation/webanno/184) |
+| [Death Playing Chess | Albertus](http://data.europeana.eu/item/2063602/SWE_280_001) | [](http://www.wikidata.org/entity/Q21257918) | [184](http://test-annotations.europeana.eu/annotation/webanno/184?wskey=apidemo) |
 
 ## Resources
 
