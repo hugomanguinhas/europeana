@@ -75,9 +75,15 @@ public class WikidataDocGenerator
         }
     }
 
+    private String escape(String str)
+    {
+        return str.replaceAll("\\|", "\\|").replaceAll("’", "\\’");
+        //return str.replaceAll("(|`)", "\\$0");
+    }
+
     private void printLink(PrintStream ps, String label, String url)
     {
-        label = label.replaceAll("[|]", "\\|");
+        label = escape(label);
         ps.print('['); ps.print(label); ps.print(']');
         ps.print('('); ps.print(url);   ps.print(')');
     }
@@ -92,17 +98,14 @@ public class WikidataDocGenerator
         Model    model = _dereferencer.deref(url);
         if ( model == null ) { return ""; }
 
-        Property prop  = model.getProperty(SKOS_PREF_LABEL);
+        Map<String,String> lits = getLiterals(model.getResource(url), SKOS_PREF_LABEL);
+        if (lits.isEmpty()) { return ""; }
 
-        StmtIterator iter = model.getResource(url).listProperties(prop);
-        while ( iter.hasNext() )
-        {
-            Literal literal = iter.next().getLiteral();
-            if ( !"en".equals(literal.getLanguage()) ) { continue; }
+        String literal = lits.get("en");
+        if ( literal != null ) { return literal; }
 
-            return literal.getString();
-        }
-        return "";
+        return lits.values().iterator().next();
+
     }
 
     private String getWkdID(String url)
@@ -115,29 +118,33 @@ public class WikidataDocGenerator
         Model  model   = _dereferencer.deref(url);
         if ( model == null ) { return getWkdID(url); }
 
-        String keyword = "http://purl.org/dc/elements/1.1/title";
-        Property prop  = model.getProperty(keyword);
+        String prop = "http://purl.org/dc/elements/1.1/title";
 
         url = url.replace("item", "proxy/provider");
-        StmtIterator iter = model.getResource(url).listProperties(prop);
 
-        Map<String,String> literals = new HashMap();
-        while ( iter.hasNext() )
-        {
-            Literal literal = iter.next().getLiteral();
-            literals.put(literal.getLanguage(), literal.getString());
-        }
-        if (literals.isEmpty()) { return ""; }
+        Map<String,String> lits = getLiterals(model.getResource(url), prop);
+        if (lits.isEmpty()) { return ""; }
 
-        String literal = literals.get("en");
+        String literal = lits.get("en");
         if ( literal != null ) { return literal; }
 
-        return literals.values().iterator().next();
+        return lits.values().iterator().next();
     }
 
-    private Map<String,String> getLiterals(Resource resource, String props)
+    private Map<String,String> getLiterals(Resource resource, String... props)
     {
-        Map<String,String> literals = new HashMap();
-        StmtIterator iter = resource.listProperties(prop);
+        Model model = resource.getModel();
+        Map<String,String> ret = new HashMap();
+        for ( String puri : props )
+        {
+            Property     prop = model.getProperty(puri);
+            StmtIterator iter = resource.listProperties(prop);
+            while ( iter.hasNext() )
+            {
+                Literal literal = iter.next().getLiteral();
+                ret.put(literal.getLanguage(), literal.getString());
+            }
+        }
+        return ret;
     }
 }
