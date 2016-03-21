@@ -20,6 +20,7 @@ import org.apache.commons.io.IOUtils;
 import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 import eu.europeana.anno.api.AnnotationAPI;
@@ -132,5 +133,11 @@ public class WikidataDocGenerator
         if ( literal != null ) { return literal; }
 
         return literals.values().iterator().next();
+    }
+
+    private Map<String,String> getLiterals(Resource resource, String props)
+    {
+        Map<String,String> literals = new HashMap();
+        StmtIterator iter = resource.listProperties(prop);
     }
 }
