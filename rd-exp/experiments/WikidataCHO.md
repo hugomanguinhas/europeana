@@ -40,7 +40,13 @@ Wikidata. It shows only the ones for the Europeana 280 Project.
 
 | Europeana Object | Wikidata Entry | Annotation | 
 | --- | --- | --- |
-| [Death Playing Chess \| Albertus](http://data.europeana.eu/item/2063602/SWE_280_001) | [](http://www.wikidata.org/entity/Q21257918) | [184](http://test-annotations.europeana.eu/annotation/webanno/184?wskey=apidemo) |
+[Death Playing Chess](http://data.europeana.eu/item/2063602/SWE_280_001) | [Death playing chess](http://www.wikidata.org/entity/Q21257918) | [184](http://test-annotations.europeana.eu/annotation/webanno/184?wskey=apidemo)
+[Rudolph II as Vertumnus](http://data.europeana.eu/item/2063602/SWE_280_002) | [Vertumnus](http://www.wikidata.org/entity/Q16333797) | [185](http://test-annotations.europeana.eu/annotation/webanno/185?wskey=apidemo)
+[The Kitchen Maid](http://data.europeana.eu/item/2063602/SWE_280_003) | [The Kitchen Maid](http://www.wikidata.org/entity/Q18089111) | [186](http://test-annotations.europeana.eu/annotation/webanno/186?wskey=apidemo)
+[Double Portrait](http://data.europeana.eu/item/2063602/SWE_280_004) | [Double Portrait](http://www.wikidata.org/entity/Q21743231) | [187](http://test-annotations.europeana.eu/annotation/webanno/187?wskey=apidemo)
+[Portrait of a Violinist](http://data.europeana.eu/item/2063602/SWE_280_005) | [Portrait of a violinist](http://www.wikidata.org/entity/Q21260816) | [188](http://test-annotations.europeana.eu/annotation/webanno/188?wskey=apidemo)
+[Adoration of the Magi](http://data.europeana.eu/item/2063602/SWE_280_006) | [Adoration of the Magi](http://www.wikidata.org/entity/Q21743263) | [189](http://test-annotations.europeana.eu/annotation/webanno/189?wskey=apidemo)
+[Passionate Lovers](http://data.europeana.eu/item/2063602/SWE_280_007) | [](http://www.wikidata.org/entity/Q21260375) | [190](http://test-annotations.europeana.eu/annotation/webanno/190?wskey=apidemo)
 
 ## Resources
 

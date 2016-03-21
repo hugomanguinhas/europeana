@@ -103,6 +103,11 @@ the specific language governing permissions and limitations under the Licence.
     <dependencies>
         <dependency>
             <groupId>eu.europeana</groupId>
+            <artifactId>rd-core</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.europeana</groupId>
             <artifactId>anno-api</artifactId>
             <version>0.1</version>
         </dependency>
