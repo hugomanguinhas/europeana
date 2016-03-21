@@ -5,13 +5,8 @@ package eu.europeana.rd.exp.blackhole;
 
 import java.io.File;
 import java.net.URISyntaxException;
-import java.net.URL;
 
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 
 import eu.europeana.rd.exp.blackhole.BlackHoleDateAnalyser;
 
