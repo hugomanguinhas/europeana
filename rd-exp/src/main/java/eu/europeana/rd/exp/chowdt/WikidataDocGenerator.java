@@ -89,6 +89,8 @@ public class WikidataDocGenerator
     private String getLabel(String url)
     {
         Model    model = _dereferencer.deref(url);
+        if ( model == null ) { return ""; }
+
         Property prop  = model.getProperty(SKOS_PREF_LABEL);
 
         StmtIterator iter = model.getResource(url).listProperties(prop);
@@ -102,10 +104,17 @@ public class WikidataDocGenerator
         return "";
     }
 
+    private String getWkdID(String url)
+    {
+        return url.substring(url.lastIndexOf('/') + 1);
+    }
+
     private String getTitle(String url)
     {
+        Model  model   = _dereferencer.deref(url);
+        if ( model == null ) { return getWkdID(url); }
+
         String keyword = "http://purl.org/dc/elements/1.1/title";
-        Model    model = _dereferencer.deref(url);
         Property prop  = model.getProperty(keyword);
 
         url = url.replace("item", "proxy/provider");
