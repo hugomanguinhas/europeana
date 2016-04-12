@@ -1,12 +1,13 @@
 # My Europeana R&D Experiments
 
 This project collects all the experiments within the R&D team that I have been 
-involved with and/or worked on. 
+involved with and/or worked on.
 
 **Contact:** Hugo Manguinhas (hugo.manguinhas@europeana.eu)
 
 ##List of all Experiments
 * [The 20th Century Black Hole](experiments/BlackHole.md)
+* [Linking Europeana Collection to Wikidata](experiments/WikidataCHO.md)
 
 ## License
 Copyright 2007-2012 The Europeana Foundation Licenced under the EUPL, 

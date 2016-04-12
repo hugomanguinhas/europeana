@@ -10,14 +10,13 @@ import java.io.PrintStream;
 import java.nio.charset.Charset;
 import java.util.Map;
 
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
 import eu.europeana.anno.api.AnnotationAPI;
-import eu.europeana.anno.api.config.AnnotationConfig;
-import eu.europeana.anno.api.impl.AnnotationAPIimpl;
 
 /**
  * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
@@ -32,28 +31,26 @@ public class WikidataAnnoGenerator
 
     public WikidataAnnoGenerator(AnnotationAPI<Map> api) { _api = api; }
 
-    public void generate(File src, File dst) throws IOException
+    public void generate(EntrySet set, File dst) throws IOException
     {
         CSVPrinter printer = null;
-        CSVParser  parser  = null;
         try {
-             printer = new CSVPrinter(new PrintStream(dst), _format);
-             parser  = CSVParser.parse(src, _charset, _format);
+            printer = new CSVPrinter(new PrintStream(dst), _format);
 
-            for ( CSVRecord record : parser )
+            for ( EntrySet.Entry entry : set )
             {
-                String eid = "http://data.europeana.eu/item/" + record.get(0);
-                Map ret = _api.newSemanticTag(eid, record.get(1));
+                Map ret = _api.newSemanticTag(entry.cho, entry.wdt);
                 if ( ret == null ) { System.err.println("error"); continue; }
 
-                printer.printRecord(eid, record.get(1), ret.get("@id"));
+                printer.printRecord(entry.cho, entry.wdt, ret.get("@id"));
             }
             printer.flush();
         }
-        finally
-        {
-            if ( printer != null ) { printer.close(); }
-            if ( parser  != null ) { parser.close();  }
-        }
+        finally { IOUtils.closeQuietly(printer); }
+    }
+
+    public void generate(File src, File dst) throws IOException
+    {
+        generate(new EntrySet().loadFromCVS(src), dst);
     }
 }

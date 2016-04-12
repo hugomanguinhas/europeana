@@ -6,12 +6,15 @@ package eu.europeana.rd.exp.chowdt;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.charset.Charset;
 import java.util.*;
 
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
-
-import com.hp.hpl.jena.rdf.model.Literal;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.jena.rdf.model.Literal;
 
 /**
  * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
@@ -43,14 +46,29 @@ public class EntrySet extends TreeSet<EntrySet.Entry>
         return dups;
     }
 
-    public void toCSV(File file) throws IOException
+
+    public void storeToCSV(File file) throws IOException
     {
         CSVPrinter p = new CSVPrinter(new PrintStream(file), CSVFormat.EXCEL);
         try {
             for ( Entry entry : this ) { p.printRecord(entry.cho, entry.wdt); }
             p.flush();
         }
-        finally { p.close(); }
+        finally { IOUtils.closeQuietly(p); }
+    }
+
+    public EntrySet loadFromCVS(File file)
+    {
+        CSVParser  parser = null;
+        try {
+            parser = CSVParser.parse(file, Charset.forName("UTF-8")
+                                   , CSVFormat.EXCEL);
+            for ( CSVRecord r : parser ) { newEntry(r.get(0), r.get(1)); }
+        }
+        catch (IOException e) { e.printStackTrace(); }
+        finally { IOUtils.closeQuietly(parser); }
+
+        return this;
     }
 
     private String getKey(Map<String,String> map, String value)

@@ -1,0 +1,14 @@
+wikidata.sparql=http://query.wikidata.org/sparql
+
+chowdt.annotation.api=http://test-annotations.europeana.eu/annotation/
+chowdt.annotation.apikey=apidemo
+chowdt.annotation.agent.name=Wikidata Coref Extractor
+chowdt.annotation.agent.homepage=http://github.com/hugomanguinhas/
+
+chowdt.resources=D:/work/github/rd-exp/src/test/resources/etc/chowdt
+chowdt.src=D:/work/github/rd-exp/src/main/resources/etc/chowdt/links.csv
+chowdt.doc=D:/work/github/rd-exp/experiments/WikidataCHO.md
+chowdt.doc.template=D:/work/github/rd-exp/src/main/resources/etc/chowdt/template.md
+chowdt.cache.wdt=D:/work/github/rd-exp/src/main/resources/etc/chowdt/cache/wdt_cache.csv
+chowdt.cache.cho=D:/work/github/rd-exp/src/main/resources/etc/chowdt/cache/cho_cache.csv
+
