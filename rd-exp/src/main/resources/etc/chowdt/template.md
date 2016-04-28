@@ -74,10 +74,11 @@ Wikidata. It shows only the ones for the Europeana 280 Project.
 
 #?wkd_links?#
 
-## Duplicates
+## List of references to potentially duplicate items
 
-This section gives an overview of the resources for which we found duplicate
-references:
+The list below shows the Wikidata resources which refer to more than one 
+Europeana object. As this typically indicates that the two Europeana objects
+are equivalent, a annotation was also generated linking them together.
 
 #?wkd_dup?#
 

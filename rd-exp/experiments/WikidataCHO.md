@@ -370,11 +370,11 @@ Wikidata. It shows only the ones for the Europeana 280 Project.
 [Aktion mit eigenem Körper](http://data.europeana.eu/item/2063629/AUS_280_012) | [Action with their own bodies](http://www.wikidata.org/entity/Q22826410) | [476](http://test-annotations.europeana.eu/annotation/webanno/476?wskey=apidemo) |
 
 
-## Duplicates
+## List of references to potentially duplicate items
 
-This section gives an overview of the resources for which we found duplicate
-references:
-
+The list below shows the Wikidata resources which refer to more than one 
+Europeana object. As this typically indicates that the two Europeana objects
+are equivalent, a annotation was also generated linking them together.
 
 | Wikidata Entry | Europeana Object 1 | Europeana Object 2 |
 | :--- | :--- | :--- |
