@@ -185,7 +185,7 @@ public class WikidataDocGenerator
             while ( iter.hasNext() )
             {
                 Literal literal = iter.next().getLiteral();
-                ret.put(literal.getLanguage(), literal.getString());
+                ret.put(literal.getLanguage(), literal.getString().trim());
             }
         }
         return ret;
