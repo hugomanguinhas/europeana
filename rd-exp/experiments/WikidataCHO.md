@@ -206,8 +206,7 @@ Wikidata. It shows only the ones for the Europeana 280 Project.
 [Battle of Orsha on 8 September 1514](http://data.europeana.eu/item/2063613/POL_280_004) | [Battle of Orsha](http://www.wikidata.org/entity/Q9173390) | [312](http://test-annotations.europeana.eu/annotation/webanno/312?wskey=apidemo) |
 [God the Father](http://data.europeana.eu/item/2063613/POL_280_005) | [God the father - Arise](http://www.wikidata.org/entity/Q22674448) | [313](http://test-annotations.europeana.eu/annotation/webanno/313?wskey=apidemo) |
 [Gaberbocchus some of the old favourites](http://data.europeana.eu/item/2063613/POL_280_006) | [Gaberbocchus some of the old favourites](http://www.wikidata.org/entity/Q22939736) | [314](http://test-annotations.europeana.eu/annotation/webanno/314?wskey=apidemo) |
-[
-Staging Point](http://data.europeana.eu/item/2063613/POL_280_007) | [Staging Point](http://www.wikidata.org/entity/Q22945245) | [315](http://test-annotations.europeana.eu/annotation/webanno/315?wskey=apidemo) |
+[Staging Point](http://data.europeana.eu/item/2063613/POL_280_007) | [Staging Point](http://www.wikidata.org/entity/Q22945245) | [315](http://test-annotations.europeana.eu/annotation/webanno/315?wskey=apidemo) |
 [The catalogue of Gniezno’s Archbishops ](http://data.europeana.eu/item/2063613/POL_280_008) | [Catalogue of the Archbishops of Gniezno](http://www.wikidata.org/entity/Q22939575) | [316](http://test-annotations.europeana.eu/annotation/webanno/316?wskey=apidemo) |
 [Four Gospels](http://data.europeana.eu/item/2063614/BU_280_01) | [Four Gospels](http://www.wikidata.org/entity/Q22947038) | [317](http://test-annotations.europeana.eu/annotation/webanno/317?wskey=apidemo) |
 [Miscellany ](http://data.europeana.eu/item/2063614/BU_280_02) | [Miscellany](http://www.wikidata.org/entity/Q22947273) | [318](http://test-annotations.europeana.eu/annotation/webanno/318?wskey=apidemo) |
