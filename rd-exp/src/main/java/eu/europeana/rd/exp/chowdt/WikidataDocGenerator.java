@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -19,13 +18,14 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.StmtIterator;
+import org.apache.jena.vocabulary.DC;
+import org.apache.jena.vocabulary.SKOS;
 
-import eu.europeana.anno.api.AnnotationAPI;
-import eu.europeana.anno.api.config.AnnotationConfig;
-import eu.europeana.anno.api.impl.AnnotationAPIimpl;
 import eu.europeana.github.MarkDownBuffer;
 import eu.europeana.github.MarkDownTemplate;
 import eu.europeana.ld.deref.Dereferencer;
+
+import static org.apache.commons.io.IOUtils.*;
 import static eu.europeana.rd.exp.chowdt.WikidataCHOExpConstants.*;
 
 /**
@@ -39,9 +39,6 @@ public class WikidataDocGenerator
 
     private static CSVFormat _format  = CSVFormat.EXCEL;
     private static Charset   _charset = Charset.forName("UTF-8");
-
-    private static String SKOS_PREF_LABEL
-    = "http://www.w3.org/2004/02/skos/core#prefLabel";
 
     private Dereferencer       _dereferencer = new Dereferencer();
     private MarkDownTemplate   _template     = new MarkDownTemplate();
@@ -91,8 +88,8 @@ public class WikidataDocGenerator
                    .append(" |\n");
             }
         }
-        catch (IOException e) { e.printStackTrace(); }
-        finally { IOUtils.closeQuietly(parser); }
+        catch (IOException e) { e.printStackTrace();  }
+        finally               { closeQuietly(parser); }
 
         return _sb.flushBuffer();
     }
@@ -121,8 +118,8 @@ public class WikidataDocGenerator
                    .append(" |\n");
             }
         }
-        catch (IOException e) { e.printStackTrace(); }
-        finally { IOUtils.closeQuietly(parser); }
+        catch (IOException e) { e.printStackTrace();  }
+        finally               { closeQuietly(parser); }
 
         return _sb.flushBuffer();
     }
@@ -136,14 +133,15 @@ public class WikidataDocGenerator
     {
         try {
             Model model = _dereferencer.dereference(url);
-            if ( model == null ) { return ""; }
-    
-            Map<String,String> lits = getLiterals(model.getResource(url), SKOS_PREF_LABEL);
-            if (lits.isEmpty()) { return ""; }
+            if ( model == null ) { return "?"; }
+
+            Map<String,String> lits = getLiterals(model.getResource(url)
+                                                , SKOS.prefLabel);
+            if (lits.isEmpty()) { return "?"; }
 
             String literal = lits.get("en");
             if ( literal != null ) { return literal; }
-    
+
             return lits.values().iterator().next();
         }
         catch(IOException e) { e.printStackTrace(); }
@@ -161,17 +159,16 @@ public class WikidataDocGenerator
         try {
             Model model = _dereferencer.dereference(url);
             if ( model == null ) { return getWkdID(url); }
-        
-            String prop = "http://purl.org/dc/elements/1.1/title";
-        
+
             url = url.replace("item", "proxy/provider");
-        
-            Map<String,String> lits = getLiterals(model.getResource(url), prop);
-            if (lits.isEmpty()) { return ""; }
-        
+
+            Map<String,String> lits = getLiterals(model.getResource(url)
+                                                , DC.title);
+            if (lits.isEmpty()) { return "?"; }
+
             String literal = lits.get("en");
             if ( literal != null ) { return literal; }
-        
+
             return lits.values().iterator().next();
         }
         catch(IOException e) { e.printStackTrace(); }
@@ -179,14 +176,12 @@ public class WikidataDocGenerator
         return "?";
     }
 
-    private Map<String,String> getLiterals(Resource resource, String... props)
+    private Map<String,String> getLiterals(Resource resource, Property... props)
     {
-        Model model = resource.getModel();
         Map<String,String> ret = new HashMap();
-        for ( String puri : props )
+        for ( Property p : props )
         {
-            Property     prop = model.getProperty(puri);
-            StmtIterator iter = resource.listProperties(prop);
+            StmtIterator iter = resource.listProperties(p);
             while ( iter.hasNext() )
             {
                 Literal literal = iter.next().getLiteral();

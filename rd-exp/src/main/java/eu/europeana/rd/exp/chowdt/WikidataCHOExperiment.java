@@ -11,10 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.commons.csv.CSVRecord;
 
 import eu.europeana.anno.api.AnnotationAPI;
 import eu.europeana.anno.api.config.AnnotationConfig;
@@ -23,6 +21,7 @@ import eu.europeana.anno.api.impl.AnnotationAPIimpl;
 import eu.europeana.ld.deref.DereferenceChecker;
 import eu.europeana.rd.exp.chowdt.EntrySet.Entry;
 
+import static org.apache.commons.io.IOUtils.*;
 import static eu.europeana.rd.exp.chowdt.WikidataCHOExpConstants.*;
 
 /**
@@ -76,8 +75,8 @@ public class WikidataCHOExperiment implements WikidataCHOExpConstants
             }
             p.flush();
         }
-        catch (IOException e) { e.printStackTrace();     }
-        finally               { IOUtils.closeQuietly(p); }
+        catch (IOException e) { e.printStackTrace(); }
+        finally               { closeQuietly(p);     }
 
         return set;
     }
@@ -100,8 +99,8 @@ public class WikidataCHOExperiment implements WikidataCHOExpConstants
             }
             p.flush();
         }
-        catch (IOException e) { e.printStackTrace();     }
-        finally               { IOUtils.closeQuietly(p); }
+        catch (IOException e) { e.printStackTrace(); }
+        finally               { closeQuietly(p);     }
 
         return set;
     }

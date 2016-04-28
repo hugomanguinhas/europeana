@@ -4,19 +4,17 @@
 package eu.europeana.rd.exp.chowdt;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
-import org.apache.commons.csv.CSVRecord;
 
 import eu.europeana.anno.api.AnnotationAPI;
+
+import static org.apache.commons.io.IOUtils.*;
 
 /**
  * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
@@ -25,7 +23,7 @@ import eu.europeana.anno.api.AnnotationAPI;
 public class WikidataAnnoGenerator
 {
     private static CSVFormat _format  = CSVFormat.EXCEL;
-    private static Charset   _charset = Charset.forName("UTF-8");
+    private static String    _charset = "UTF-8";
 
     private AnnotationAPI<Map> _api;
 
@@ -35,8 +33,7 @@ public class WikidataAnnoGenerator
     {
         CSVPrinter printer = null;
         try {
-            printer = new CSVPrinter(new PrintStream(dst), _format);
-
+            printer = new CSVPrinter(new PrintStream(dst, _charset), _format);
             for ( EntrySet.Entry entry : set )
             {
                 Map ret = _api.newSemanticTag(entry.cho, entry.wdt);
@@ -46,7 +43,7 @@ public class WikidataAnnoGenerator
             }
             printer.flush();
         }
-        finally { IOUtils.closeQuietly(printer); }
+        finally { closeQuietly(printer); }
     }
 
     public void generate(File src, File dst) throws IOException

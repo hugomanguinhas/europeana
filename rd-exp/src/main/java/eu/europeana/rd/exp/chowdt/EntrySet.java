@@ -9,12 +9,13 @@ import java.io.PrintStream;
 import java.nio.charset.Charset;
 import java.util.*;
 
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.jena.rdf.model.Literal;
+
+import static org.apache.commons.io.IOUtils.*;
 
 /**
  * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
@@ -54,7 +55,7 @@ public class EntrySet extends TreeSet<EntrySet.Entry>
             for ( Entry entry : this ) { p.printRecord(entry.cho, entry.wdt); }
             p.flush();
         }
-        finally { IOUtils.closeQuietly(p); }
+        finally { closeQuietly(p); }
     }
 
     public EntrySet loadFromCVS(File file)
@@ -65,19 +66,10 @@ public class EntrySet extends TreeSet<EntrySet.Entry>
                                    , CSVFormat.EXCEL);
             for ( CSVRecord r : parser ) { newEntry(r.get(0), r.get(1)); }
         }
-        catch (IOException e) { e.printStackTrace(); }
-        finally { IOUtils.closeQuietly(parser); }
+        catch (IOException e) { e.printStackTrace();  }
+        finally               { closeQuietly(parser); }
 
         return this;
-    }
-
-    private String getKey(Map<String,String> map, String value)
-    {
-        for (Map.Entry<String, String> entry : map.entrySet())
-        {
-            if ( entry.getValue().equals(value) ) { return entry.getKey(); }
-        }
-        return null;
     }
 
     private void addToMap(Map<String,List<Entry>> map
@@ -86,17 +78,6 @@ public class EntrySet extends TreeSet<EntrySet.Entry>
         List<Entry> list = map.get(key);
         if ( list == null ) { list = new ArrayList(1); map.put(key, list); }
         list.add(entry);
-    }
-
-    private void newDuplicate(String cho, String wdt1, String wdt2)
-    {
-        System.err.println("Found duplicate: " + cho
-                         + ", " + wdt1 + ", " + wdt2);
-    }
-
-    private String getURI(Literal europeanaID)
-    {
-        return ("http://data.europeana.eu/item/" + europeanaID.getString());
     }
 
 

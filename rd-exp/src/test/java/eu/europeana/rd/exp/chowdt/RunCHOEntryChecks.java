@@ -8,12 +8,13 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
-import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import eu.europeana.ld.deref.DereferenceChecker;
+
+import static org.apache.commons.io.IOUtils.*;
 
 /**
  * @author Hugo Manguinhas <hugo.manguinhas@europeana.eu>
@@ -37,6 +38,6 @@ public class RunCHOEntryChecks implements WikidataCHOExpConstants
                                    , CSVFormat.EXCEL);
             for ( CSVRecord record : parser ) { checker.check(record.get(0)); }
         }
-        finally { IOUtils.closeQuietly(parser); }
+        finally { closeQuietly(parser); }
     }
 }

@@ -3,23 +3,25 @@
 ## Introduction
 
 As a result of projects such as Europeana Sounds and Europeana Art 280, as well
-as other and initiatives such as the Wikidata project Sum of All Paintings, data 
-in Wikidata is refering more and more to objects in the Europeana collection.
+as other initiatives such as the Wikidata project [Sum of All Paintings]
+(https://www.wikidata.org/wiki/Wikidata:WikiProject_sum_of_all_paintings), data 
+in Wikidata is referring more and more to objects in the Europeana collection.
 
 This github project contains the source code that was developed to extract
 data from Wikidata and generate annotations that will link Europeana objects to
-Wikidata entries. 
+Wikidata entries.
 
 Contact: Hugo Manguinhas (hugo.manguinhas@europeana.eu)
 
 ## More on the projects
 
-In Europeana Sounds, audio recordings are uploaded to Wikimedia Commons and 
-where suitable the sounds will be referenced from Wikidata and used in Wikipedia articles.
+In [Europeana Sounds](http://www.europeanasounds.eu/), audio recordings are 
+uploaded to Wikimedia Commons and where suitable the sounds will be referenced 
+from Wikidata and used in Wikipedia articles.
 
-In Art 280 new Wikidata entities and existing entities representing artworks 
+In [Europeana 280](http://pro.europeana.eu/pressrelease/europeana-280-art-from-the-28-countries-of-europe), new Wikidata entities and existing entities representing artworks 
 will be created and/or updated based on Europeana metadata. Corresponding 
-Wikipedia articles will also be updated. The process has been begun at small 
+Wikipedia articles will also be updated. The process has begun at small 
 scale already, https://www.wikidata.org/wiki/User:Multichill/Europeana_280_list
 
 ## Methodology
@@ -81,23 +83,20 @@ references:
 
 ## Resources
 
-The following resource were generated:
+The following resources were generated:
 * [links.csv]
-(../src/test/resources/etc/chowdt/links.csv): A CSV file containing all links
-that were harvested.
+(../src/test/resources/etc/chowdt/links.csv): All links that were harvested.
 * [links_invalid.csv]
-(../src/test/resources/etc/chowdt/links_invalid.csv): A CSV file containing all 
+(../src/test/resources/etc/chowdt/links_invalid.csv): All 
 links that were no longer resolving and therefore considered as invalid.
 * [links_dup.csv]
-(../src/test/resources/etc/chowdt/links_dup.csv): A CSV file containing all 
-duplicate links.
+(../src/test/resources/etc/chowdt/links_dup.csv): All duplicate links.
 * [links_anno.csv]
-(../src/test/resources/etc/chowdt/links_anno.csv): A CSV file containing all 
+(../src/test/resources/etc/chowdt/links_anno.csv): All 
 links for which an annotation was created.
 * [links_sample.csv]
-(../src/test/resources/etc/chowdt/links_sample.csv): A CSV file containing just 
-a sample of the annotations that were created in particular for the Europeana
-280 Project.
+(../src/test/resources/etc/chowdt/links_sample.csv): A sample of the annotations 
+that were created in particular for the Europeana 280 Project.
 
 ## Usage
 

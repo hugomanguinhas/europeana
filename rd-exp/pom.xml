@@ -7,8 +7,8 @@
     <groupId>eu.europeana</groupId>
     <artifactId>rd-exp</artifactId>
     <version>1.0</version>
-
     <packaging>jar</packaging>
+
     <name>RnD Experiments Project</name>
     <url>http://www.europeanalabs.eu</url>
 
@@ -103,12 +103,12 @@ the specific language governing permissions and limitations under the Licence.
     <dependencies>
         <dependency>
             <groupId>eu.europeana</groupId>
-            <artifactId>shapes-doc</artifactId>
+            <artifactId>ld-utils</artifactId>
             <version>0.1</version>
         </dependency>
         <dependency>
             <groupId>eu.europeana</groupId>
-            <artifactId>rd-core</artifactId>
+            <artifactId>shapes-doc</artifactId>
             <version>0.1</version>
         </dependency>
         <dependency>
@@ -138,14 +138,19 @@ the specific language governing permissions and limitations under the Licence.
             <version>3.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
+            <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>1.3.2</version>
+            <version>2.4</version>
         </dependency>
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
             <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.1</version>
         </dependency>
     </dependencies>
 
