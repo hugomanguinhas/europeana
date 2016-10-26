@@ -46,7 +46,7 @@ public class TranslatorCmd
     /**************************************************************************/
     private static Object checkParameters(String[] args)
     {
-        if ( args.length != 3 ) { return ERR_PARAM; }
+        if ( args.length < 3 ) { return ERR_PARAM; }
 
         Object[] ret = new Object[3];
         String arg1 = (String)args[0];

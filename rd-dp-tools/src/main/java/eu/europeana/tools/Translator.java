@@ -18,6 +18,7 @@ public class Translator
 {
     private Transformer _transformer;
     private File        _file;
+    private boolean     _override = false;
 
 
     public Translator(Transformer t) { _transformer = t; }
@@ -148,6 +149,8 @@ public class Translator
 
         File out = new File(dst, src.getAbsolutePath().substring(iPrefix));
         out.getParentFile().mkdirs();
+
+        if ( !_override && out.exists() ) { return; }
 
         try {
             System.out.println("Processing file: " + src.getAbsolutePath());

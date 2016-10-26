@@ -3,10 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>eu.europeana</groupId>
     <artifactId>rd-dp-tools</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
+
     <name>Europeana RnD DP tools</name>
     <url>http://www.europeanalabs.eu</url>
 
